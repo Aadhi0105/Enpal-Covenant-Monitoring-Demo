@@ -53,42 +53,43 @@ Synthetic portfolio financials, spanning several consecutive reporting periods, 
 
 ## Repository Structure
 
-
 ```
-
 enpal-covenant-monitoring-demo/
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
-├── .env # Anthropic API key — not committed
+├── .env                                     # Anthropic API key — not committed
 ├── synthetic_agreements/
-│ ├── facility_a_credit_agreement.txt # Control case — ABS-style, no complications
-│ ├── facility_b_credit_agreement.txt # Definitional inconsistency, isolated
-│ ├── facility_c_credit_agreement.txt # Amendment/lifecycle, isolated — original
-│ └── facility_c_amendment_1.txt # Facility C — amendment, own effective date
+│   ├── facility_a_credit_agreement.txt      # Control case — ABS-style, no complications
+│   ├── facility_b_credit_agreement.txt      # Definitional inconsistency, isolated
+│   ├── facility_c_credit_agreement.txt      # Amendment/lifecycle, isolated — original
+│   └── facility_c_amendment_1.txt           # Facility C — amendment, own effective date
 ├── synthetic_financials/
-│ ├── facility_a_periods.csv # Multi-period synthetic portfolio data
-│ ├── facility_b_periods.csv
-│ └── facility_c_periods.csv
+│   ├── facility_a_periods.csv               # Multi-period synthetic portfolio data
+│   ├── facility_b_periods.csv
+│   └── facility_c_periods.csv
 ├── notebooks/
-│ ├── 01_extraction.ipynb
-│ ├── 02_confidence_and_review.ipynb
-│ ├── 03_record_store.ipynb
-│ └── 04_comparison_and_alerting.ipynb
+│   ├── 01_extraction.ipynb
+│   ├── 02_confidence_and_review.ipynb
+│   ├── 03_record_store.ipynb
+│   └── 04_comparison_and_alerting.ipynb
 └── records/
-└── (structured JSON output from notebooks 01–03, committed as evidence of a real run)
-
+    └── (structured JSON output from every notebook, committed as evidence of a real run)
 ```
+
 ---
 
-## Intended Outputs
+## Results
 
-Running the notebooks in order produces:
+All four notebooks have been run end to end against the synthetic agreements and financial data. What follows are the actual, independently verified results — not a description of what the pipeline is intended to do.
 
-- A structured, versioned record of every covenant extracted, each with a source citation and a confidence score.
-- An explicit demonstration that Facility A and Facility B's shared covenant label resolves to two different numbers when the correct, facility-specific definition is applied.
-- A clear cutover point in Facility C's record where the governing leverage ratio threshold changes at the amendment's effective date — with earlier periods still correctly tested against the original threshold.
-- A period-by-period covenant test result for each facility, showing headroom and trend rather than a single snapshot.
+**Extraction and confidence.** All three facilities' covenants were extracted with citation-grounded values, each independently checked against the source text. Across three independent extraction passes per document, six of seven distinct covenant terms reached full agreement and were approved. One — Facility B's Reserve Account covenant — was correctly withheld from monitoring and flagged for human review: the three passes agreed on the underlying citation, but expressed the threshold value in two different, equally valid phrasings ("2.00%" vs. "2.00% of the Original Pool Balance"). It remains excluded pending review, exactly as intended — nothing covenant-critical proceeds without sign-off.
+
+**Facility A (control).** Delinquency Ratio rose gently from 0.80% to 1.54% over eight periods, well under the 5.00% trigger. Overcollateralization held steady at 12.0%, comfortably above the 8.00% target, throughout. No drama — the clean case, as designed.
+
+**Facility B (definitional inconsistency).** Using its own contractual definition (90+ days delinquent ÷ fixed original pool balance), Facility B's Delinquency Ratio rose from 0.273% to 2.795% across six periods — never approaching its 4.00% trigger. Applying Facility A's definition (60+ days ÷ current, shrinking balance) to the *identical* underlying data instead produces 0.688% rising to 7.623%, crossing 5% by the final period. Same facts, two definitions, two entirely different risk conclusions — the core claim this facility exists to prove, demonstrated on real computed output.
+
+**Facility C (amendment resolution).** The Consolidated Net Leverage Ratio was correctly tested against 3.50:1.00 through the Test Period ended December 31, 2024 — headroom narrowing steadily to a thin +0.017x that period, cured via a permitted equity contribution — and against the amended 4.00:1.00 threshold from March 31, 2025 onward, with headroom recovering to +0.280x and +0.390x. A resolver using only the original agreement, never learning of the amendment, would have wrongly flagged **both** post-amendment periods as covenant breaches. The correct resolver, built in this repository, did not.
 
 ---
 
