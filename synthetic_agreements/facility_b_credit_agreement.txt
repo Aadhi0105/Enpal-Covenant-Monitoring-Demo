@@ -1,0 +1,155 @@
+WAREHOUSE RECEIVABLES FACILITY AGREEMENT
+
+dated as of November 4, 2024
+
+among
+
+HELIORA SOLAR FUNDING II GmbH,
+as Borrower,
+
+HELIORA ENERGY GmbH,
+as Originator and Servicer,
+
+SOLVENTA BANK SE,
+as Facility Agent and Senior Lender,
+
+and
+
+KASTELLAN TRUST & AGENCY GmbH,
+as Collateral Agent
+
+
+THIS WAREHOUSE RECEIVABLES FACILITY AGREEMENT (as amended, restated, supplemented or otherwise modified from time to time in accordance with its terms, this "Agreement") is entered into as of November 4, 2024, among HELIORA SOLAR FUNDING II GmbH, a special purpose vehicle organized under the laws of Germany (the "Borrower"), HELIORA ENERGY GmbH, a limited liability company organized under the laws of Germany, in its capacity as originator (the "Originator") and as servicer (the "Servicer"), SOLVENTA BANK SE, in its capacity as facility agent (the "Facility Agent") and as senior lender (together with any permitted assignee, the "Senior Lender"), and KASTELLAN TRUST & AGENCY GmbH, in its capacity as collateral agent (the "Collateral Agent").
+
+RECITALS
+
+WHEREAS, the Originator is engaged in the business of financing the sale, lease, and installation of residential solar photovoltaic systems, battery storage units, and related equipment to retail customers pursuant to Customer Contracts;
+
+WHEREAS, the Originator sells and contributes Receivables arising under such Customer Contracts to the Borrower from time to time pursuant to a separate purchase and sale agreement, such Receivables being distinct from, and not comprising any part of, the reference pool relating to any other financing facility of the Originator or its affiliates;
+
+WHEREAS, the Borrower desires to obtain advances from the Senior Lender, secured by the Reference Pool, to finance its acquisition of Receivables from the Originator; and
+
+WHEREAS, the Senior Lender is willing to make such advances upon the terms and subject to the conditions set forth herein;
+
+NOW, THEREFORE, in consideration of the mutual covenants and agreements set forth herein, the parties agree as follows:
+
+
+ARTICLE I
+DEFINITIONS
+
+Section 1.01. Certain Defined Terms. As used in this Agreement, the following terms have the meanings set forth below. Capitalized terms used but not defined in this Article shall have the meanings ascribed to them elsewhere in this Agreement.
+
+"Advance" means any advance made by the Senior Lender to the Borrower pursuant to Section 2.02.
+
+"Advance Balance" means, as of any date of determination, the aggregate outstanding principal amount of all Advances, less any principal amounts repaid.
+
+"Closing Date" means November 4, 2024.
+
+"Collection Period" means each calendar month, provided that the initial Collection Period shall commence on the Closing Date and end on the last day of the calendar month in which the Closing Date occurs.
+
+"Customer Contract" means an installment sale, lease, or financing agreement between the Originator and a retail customer relating to a residential solar photovoltaic system, battery storage unit, heat pump, or related equipment.
+
+"Delinquent Receivable" means, as of any date of determination, a Receivable with respect to which any scheduled payment, or part thereof, remains unpaid for 90 days or more from its original due date, as reasonably determined by the Servicer in accordance with its customary servicing practices.
+
+"Delinquency Ratio" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables as of the last day of such Collection Period to (b) the Original Pool Balance of the Reference Pool.
+
+"Delinquency Trigger" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 4.00%.
+
+"Determination Date" means, with respect to any Collection Period, the fifth Business Day following the last day of such Collection Period.
+
+"Eligible Receivable" means a Receivable that satisfies the eligibility criteria set forth in Schedule I hereto as of the date such Receivable was contributed to the Reference Pool.
+
+"Facility Amount" means EUR 250,000,000, as such amount may be increased or reduced from time to time in accordance with Section 2.04.
+
+"Original Pool Balance" means the aggregate principal balance of all Receivables comprising the Reference Pool as of the Closing Date, without regard to any subsequent amortization, prepayment, or Realized Loss.
+
+"Outstanding Pool Balance" means, as of any date of determination, the aggregate outstanding principal balance of all Receivables in the Reference Pool as of such date, excluding any portion thereof that has been charged off as a Realized Loss in accordance with the Servicer's customary practices.
+
+"Realized Loss" means, with respect to any Receivable, the amount by which the Outstanding Pool Balance of such Receivable exceeds net liquidation or recovery proceeds, if any, following a determination by the Servicer, in accordance with its customary servicing practices, that such Receivable is uncollectible.
+
+"Reference Pool" means, as of any date, the aggregate of all Receivables contributed by the Originator to the Borrower and pledged to the Collateral Agent pursuant to this Agreement, excluding any Receivables repurchased or removed in accordance with the terms hereof.
+
+"Required Reserve Amount" means an amount equal to 2.00% of the Original Pool Balance.
+
+"Reserve Account" means the segregated trust account established by the Borrower on the Closing Date and maintained by the Collateral Agent for the benefit of the Senior Lender in accordance with Section 5.02.
+
+"Reserve Account Balance" means, as of any date of determination, the amount on deposit in the Reserve Account.
+
+"Reserve Account Deficiency" means, as of any Determination Date, the event that occurs if the Reserve Account Balance as of such Determination Date is less than the Required Reserve Amount.
+
+"Servicer Report" has the meaning set forth in Section 6.01.
+
+
+ARTICLE II
+THE FACILITY
+
+Section 2.01. Commitment. Subject to the terms and conditions of this Agreement, the Senior Lender agrees to make Advances to the Borrower from time to time during the Revolving Period, in an aggregate amount not to exceed the Facility Amount.
+
+Section 2.02. Advances. Each Advance shall be made against the borrowing base calculated with reference to the Outstanding Pool Balance of Eligible Receivables, subject to satisfaction of the Reserve Account covenant described in Article V.
+
+Section 2.03. Interest. Advances shall bear interest at a rate per annum equal to the reference rate specified in Schedule II hereto, payable monthly in arrears on each Payment Date.
+
+Section 2.04. Facility Amount Adjustments. The Facility Amount may be increased or reduced by written agreement of the Borrower and the Senior Lender, subject to satisfaction of the Rating Agency Condition, if applicable.
+
+
+ARTICLE III
+CONDITIONS PRECEDENT
+
+Section 3.01. Conditions to Closing. The obligation of the Senior Lender to make the initial Advance is subject to the satisfaction of customary conditions precedent, including delivery of the Transaction Documents, opinions of counsel, funding of the Reserve Account in the Required Reserve Amount, and evidence of perfection of the Collateral Agent's security interest in the Reference Pool.
+
+Section 3.02. Conditions to Each Advance. The obligation of the Senior Lender to make any Advance following the Closing Date is subject to the accuracy of the Borrower's representations and warranties and the absence of any continuing Event of Default.
+
+
+ARTICLE IV
+REPRESENTATIONS AND WARRANTIES
+
+Section 4.01. Representations of the Borrower. The Borrower represents and warrants, as of the Closing Date and as of each Determination Date, that it is duly organized and validly existing, that this Agreement constitutes its legal, valid, and binding obligation, and that no Event of Default has occurred and is continuing.
+
+Section 4.02. Representations of the Servicer. The Servicer represents and warrants that it has the requisite systems and personnel to service the Reference Pool in accordance with its customary servicing practices and Applicable Law.
+
+
+ARTICLE V
+FINANCIAL COVENANTS
+
+Section 5.01. Delinquency Covenant. The Borrower shall not permit a Delinquency Trigger to occur and be continuing. Occurrence of a Delinquency Trigger, if not cured within the period specified in Section 7.01(c), shall constitute an Event of Default.
+
+Section 5.02. Reserve Account Covenant. The Borrower shall ensure that no Reserve Account Deficiency exists as of any Determination Date. If a Reserve Account Deficiency exists as of any Determination Date, the Servicer shall apply Available Funds to replenish the Reserve Account up to the Required Reserve Amount on the immediately following Payment Date, prior to any distribution to the Borrower. A Reserve Account Deficiency that remains uncured for 30 days following the Determination Date on which it first occurred shall constitute an Event of Default.
+
+Section 5.03. Cure Rights. The Borrower or the Originator may cure a failure of the covenant set forth in Section 5.01 by contributing additional Eligible Receivables to the Reference Pool sufficient to restore compliance as of the next succeeding Determination Date.
+
+
+ARTICLE VI
+REPORTING
+
+Section 6.01. Monthly Servicer Report. On or before each Determination Date, the Servicer shall deliver to the Facility Agent and the Collateral Agent a report (the "Servicer Report") setting forth, with respect to the immediately preceding Collection Period: (a) the Outstanding Pool Balance, (b) the Original Pool Balance, (c) the Delinquency Ratio and whether a Delinquency Trigger has occurred, (d) the Reserve Account Balance, the Required Reserve Amount, and whether a Reserve Account Deficiency exists, and (e) such other information as the Facility Agent may reasonably request.
+
+Section 6.02. Notice of Default. The Servicer shall promptly notify the Facility Agent and the Collateral Agent upon obtaining knowledge of any Event of Default.
+
+
+ARTICLE VII
+EVENTS OF DEFAULT
+
+Section 7.01. Events of Default. Each of the following shall constitute an "Event of Default" under this Agreement:
+
+(a) failure by the Borrower to pay any amount due under this Agreement within three Business Days of the applicable due date;
+
+(b) any representation or warranty made by the Borrower or the Servicer proves to have been incorrect in any material respect when made;
+
+(c) the occurrence of a breach of Section 5.01 or Section 5.02 that remains uncured for 30 days following the Determination Date on which such breach first occurred; or
+
+(d) the occurrence of certain insolvency events with respect to the Borrower, the Originator, or the Servicer.
+
+Section 7.02. Remedies. Upon the occurrence and continuation of an Event of Default, the Facility Agent may, upon instruction of the Senior Lender, declare the Advance Balance immediately due and payable and direct the Collateral Agent to exercise remedies with respect to the Reference Pool.
+
+
+ARTICLE VIII
+MISCELLANEOUS
+
+Section 8.01. Amendments. This Agreement may be amended only by a written instrument signed by the Borrower, the Servicer, the Facility Agent, and the Collateral Agent.
+
+Section 8.02. Governing Law. This Agreement shall be governed by and construed in accordance with the laws of Germany, without regard to conflicts of laws principles.
+
+Section 8.03. Counterparts. This Agreement may be executed in counterparts, each of which shall be an original, and all of which together shall constitute one instrument.
+
+
+IN WITNESS WHEREOF, the parties have caused this Agreement to be executed as of the date first written above.

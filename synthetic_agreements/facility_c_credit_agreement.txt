@@ -1,0 +1,128 @@
+TERM LOAN CREDIT AGREEMENT
+
+dated as of June 3, 2023
+
+among
+
+HELIORA GROUP HOLDCO GmbH,
+as Borrower,
+
+HELIORA ENERGY GmbH,
+as Guarantor,
+
+ARDENNE CAPITAL BANK AG,
+as Administrative Agent,
+
+and
+
+THE LENDERS PARTY HERETO
+
+
+THIS TERM LOAN CREDIT AGREEMENT (as amended, restated, supplemented or otherwise modified from time to time in accordance with its terms, this "Agreement") is entered into as of June 3, 2023, among HELIORA GROUP HOLDCO GmbH, a limited liability company organized under the laws of Germany (the "Borrower"), HELIORA ENERGY GmbH, a limited liability company organized under the laws of Germany, as guarantor (the "Guarantor"), ARDENNE CAPITAL BANK AG, in its capacity as administrative agent (the "Administrative Agent"), and the financial institutions from time to time party hereto as lenders (collectively, the "Lenders").
+
+RECITALS
+
+WHEREAS, the Borrower has requested that the Lenders extend a term loan facility to the Borrower to finance general corporate purposes, including working capital and growth capital expenditure of the Borrower and its Subsidiaries; and
+
+WHEREAS, the Lenders are willing to extend such facility upon the terms and subject to the conditions set forth herein;
+
+NOW, THEREFORE, in consideration of the mutual covenants and agreements set forth herein, the parties agree as follows:
+
+
+ARTICLE I
+DEFINITIONS
+
+Section 1.01. Certain Defined Terms. As used in this Agreement, the following terms have the meanings set forth below. Capitalized terms used but not defined in this Article shall have the meanings ascribed to them elsewhere in this Agreement.
+
+"Applicable Rate" means the rate per annum set forth in Schedule I hereto, determined by reference to the Consolidated Net Leverage Ratio as most recently reported pursuant to Section 5.02.
+
+"Closing Date" means June 3, 2023.
+
+"Compliance Certificate" has the meaning set forth in Section 5.02.
+
+"Consolidated EBITDA" means, for the Borrower and its Subsidiaries on a consolidated basis for any Test Period, Consolidated Net Income for such period, plus, without duplication and to the extent deducted in determining such Consolidated Net Income, (a) Consolidated Interest Expense, (b) provision for income taxes, (c) depreciation and amortization expense, (d) non-cash stock-based compensation expense, and (e) other non-recurring or extraordinary items reasonably approved by the Administrative Agent, in each case for such Test Period, all as determined in accordance with the Applicable Accounting Principles.
+
+"Consolidated Interest Expense" means, for the Borrower and its Subsidiaries on a consolidated basis for any Test Period, total interest expense (including capitalized interest) in respect of Indebtedness of the Borrower and its Subsidiaries, determined in accordance with the Applicable Accounting Principles.
+
+"Consolidated Net Debt" means, as of any date of determination, (a) the aggregate outstanding principal amount of Indebtedness for borrowed money of the Borrower and its Subsidiaries on a consolidated basis, minus (b) the aggregate amount of unrestricted cash and cash equivalents of the Borrower and its Subsidiaries on a consolidated basis as of such date, in each case determined in accordance with the Applicable Accounting Principles.
+
+"Consolidated Net Income" means, for the Borrower and its Subsidiaries on a consolidated basis for any Test Period, net income (or loss) for such period, determined in accordance with the Applicable Accounting Principles.
+
+"Consolidated Net Leverage Ratio" means, as of the last day of any Test Period, the ratio of (a) Consolidated Net Debt as of such date to (b) Consolidated EBITDA for the Test Period then ended.
+
+"Facility Amount" means EUR 60,000,000.
+
+"Maturity Date" means the fifth anniversary of the Closing Date.
+
+"Term Loan" means the term loan facility made available to the Borrower pursuant to Section 2.01.
+
+"Test Period" means, as of any date of determination, the four consecutive fiscal quarters of the Borrower most recently ended for which financial statements have been, or are required to have been, delivered pursuant to Section 5.02.
+
+
+ARTICLE II
+THE FACILITY
+
+Section 2.01. Term Loan Commitment. Subject to the terms and conditions of this Agreement, each Lender severally agrees to make a term loan to the Borrower on the Closing Date in an amount equal to such Lender's applicable percentage of the Facility Amount.
+
+Section 2.02. Repayment. The Term Loan shall be repaid in full on the Maturity Date, together with any scheduled amortization payments set forth in Schedule II hereto.
+
+Section 2.03. Interest. The Term Loan shall bear interest at the Applicable Rate, payable quarterly in arrears.
+
+
+ARTICLE III
+CONDITIONS PRECEDENT
+
+Section 3.01. Conditions to Closing. The obligation of the Lenders to fund the Term Loan on the Closing Date is subject to the satisfaction of customary conditions precedent, including delivery of this Agreement and the other Loan Documents, opinions of counsel, and a certificate of a Responsible Officer of the Borrower certifying pro forma compliance with Section 6.01 as of the Closing Date.
+
+
+ARTICLE IV
+REPRESENTATIONS AND WARRANTIES
+
+Section 4.01. Representations of the Borrower. The Borrower represents and warrants, as of the Closing Date and as of the date of delivery of each Compliance Certificate, that it and its Subsidiaries are duly organized and validly existing, that this Agreement constitutes its legal, valid, and binding obligation, and that no Default has occurred and is continuing.
+
+
+ARTICLE V
+AFFIRMATIVE COVENANTS
+
+Section 5.01. Financial Statements. The Borrower shall deliver to the Administrative Agent, within 45 days after the end of each of the first three fiscal quarters of each fiscal year, and within 90 days after the end of each fiscal year, consolidated financial statements of the Borrower and its Subsidiaries prepared in accordance with the Applicable Accounting Principles.
+
+Section 5.02. Compliance Certificate. Concurrently with the delivery of the financial statements required by Section 5.01, the Borrower shall deliver to the Administrative Agent a certificate of a Responsible Officer of the Borrower (a "Compliance Certificate") setting forth, in reasonable detail, the calculation of the Consolidated Net Leverage Ratio as of the last day of the relevant Test Period, together with a statement as to whether any Default has occurred and is continuing.
+
+
+ARTICLE VI
+FINANCIAL COVENANTS
+
+Section 6.01. Consolidated Net Leverage Ratio. The Borrower shall not permit the Consolidated Net Leverage Ratio, as of the last day of any Test Period ending on or after September 30, 2023, to exceed 3.50:1.00.
+
+Section 6.02. Cure Right. In the event of a breach of Section 6.01, the Borrower shall have the right, exercisable no more than twice during the term of this Agreement, to cure such breach by causing the Guarantor or its equityholders to make a cash contribution to the capital of the Borrower, which contribution shall, for the purposes of calculating the Consolidated Net Leverage Ratio only, be added to Consolidated EBITDA for the relevant Test Period.
+
+
+ARTICLE VII
+EVENTS OF DEFAULT
+
+Section 7.01. Events of Default. Each of the following shall constitute an "Event of Default" under this Agreement:
+
+(a) failure by the Borrower to pay any amount due under this Agreement within three Business Days of the applicable due date;
+
+(b) any representation or warranty made by the Borrower proves to have been incorrect in any material respect when made;
+
+(c) failure by the Borrower to comply with Section 6.01, subject to the cure right set forth in Section 6.02;
+
+(d) failure by the Borrower to deliver any Compliance Certificate required by Section 5.02 within 10 Business Days of the date such certificate is due; or
+
+(e) the occurrence of certain insolvency events with respect to the Borrower or the Guarantor.
+
+Section 7.02. Remedies. Upon the occurrence and continuation of an Event of Default, the Administrative Agent may, upon instruction of the Required Lenders, declare the Term Loan immediately due and payable.
+
+
+ARTICLE VIII
+MISCELLANEOUS
+
+Section 8.01. Amendments. This Agreement may be amended only by a written instrument signed by the Borrower, the Guarantor, the Administrative Agent, and the Required Lenders, except as otherwise provided herein.
+
+Section 8.02. Governing Law. This Agreement shall be governed by and construed in accordance with the laws of Germany, without regard to conflicts of laws principles.
+
+Section 8.03. Counterparts. This Agreement may be executed in counterparts, each of which shall be an original, and all of which together shall constitute one instrument.
+
+
+IN WITNESS WHEREOF, the parties have caused this Agreement to be executed as of the date first written above.
