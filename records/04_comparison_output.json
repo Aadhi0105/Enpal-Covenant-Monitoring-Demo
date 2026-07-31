@@ -1,0 +1,196 @@
+{
+  "Facility A": {
+    "covenant_tests": [
+      {
+        "period": "2024-03",
+        "delinquency_ratio_pct": 0.8,
+        "delinquency_trigger": false,
+        "oc_amount": 18000000,
+        "oc_target": 12000000.0,
+        "oc_satisfied": true
+      },
+      {
+        "period": "2024-04",
+        "delinquency_ratio_pct": 0.929,
+        "delinquency_trigger": false,
+        "oc_amount": 18720000,
+        "oc_target": 12480000.0,
+        "oc_satisfied": true
+      },
+      {
+        "period": "2024-05",
+        "delinquency_ratio_pct": 1.056,
+        "delinquency_trigger": false,
+        "oc_amount": 19320000,
+        "oc_target": 12880000.0,
+        "oc_satisfied": true
+      },
+      {
+        "period": "2024-06",
+        "delinquency_ratio_pct": 1.159,
+        "delinquency_trigger": false,
+        "oc_amount": 19680000,
+        "oc_target": 13120000.0,
+        "oc_satisfied": true
+      },
+      {
+        "period": "2024-07",
+        "delinquency_ratio_pct": 1.257,
+        "delinquency_trigger": false,
+        "oc_amount": 20040000,
+        "oc_target": 13360000.0,
+        "oc_satisfied": true
+      },
+      {
+        "period": "2024-08",
+        "delinquency_ratio_pct": 1.361,
+        "delinquency_trigger": false,
+        "oc_amount": 20280000,
+        "oc_target": 13520000.0,
+        "oc_satisfied": true
+      },
+      {
+        "period": "2024-09",
+        "delinquency_ratio_pct": 1.462,
+        "delinquency_trigger": false,
+        "oc_amount": 20520000,
+        "oc_target": 13680000.0,
+        "oc_satisfied": true
+      },
+      {
+        "period": "2024-10",
+        "delinquency_ratio_pct": 1.536,
+        "delinquency_trigger": false,
+        "oc_amount": 20700000,
+        "oc_target": 13800000.0,
+        "oc_satisfied": true
+      }
+    ]
+  },
+  "Facility B": {
+    "delinquency_ratio_tests": [
+      {
+        "period": "2024-11",
+        "correct_ratio_pct": 0.273,
+        "correct_triggered": false,
+        "if_wrongly_using_facility_a_definition_pct": 0.688
+      },
+      {
+        "period": "2024-12",
+        "correct_ratio_pct": 0.441,
+        "correct_triggered": false,
+        "if_wrongly_using_facility_a_definition_pct": 1.123
+      },
+      {
+        "period": "2025-01",
+        "correct_ratio_pct": 0.714,
+        "correct_triggered": false,
+        "if_wrongly_using_facility_a_definition_pct": 1.848
+      },
+      {
+        "period": "2025-02",
+        "correct_ratio_pct": 1.159,
+        "correct_triggered": false,
+        "if_wrongly_using_facility_a_definition_pct": 3.02
+      },
+      {
+        "period": "2025-03",
+        "correct_ratio_pct": 1.841,
+        "correct_triggered": false,
+        "if_wrongly_using_facility_a_definition_pct": 4.868
+      },
+      {
+        "period": "2025-04",
+        "correct_ratio_pct": 2.795,
+        "correct_triggered": false,
+        "if_wrongly_using_facility_a_definition_pct": 7.623
+      }
+    ],
+    "reserve_account_covenant": {
+      "status": "untestable - pending human review",
+      "governing_threshold": null
+    }
+  },
+  "Facility C": {
+    "leverage_ratio_tests": [
+      {
+        "test_period_end": "2023-09-30",
+        "raw_ratio": 2.76,
+        "adjusted_ratio": 2.76,
+        "governing_threshold": 3.5,
+        "compliant": true,
+        "headroom": 0.74
+      },
+      {
+        "test_period_end": "2023-12-31",
+        "raw_ratio": 2.898,
+        "adjusted_ratio": 2.898,
+        "governing_threshold": 3.5,
+        "compliant": true,
+        "headroom": 0.602
+      },
+      {
+        "test_period_end": "2024-03-31",
+        "raw_ratio": 3.065,
+        "adjusted_ratio": 3.065,
+        "governing_threshold": 3.5,
+        "compliant": true,
+        "headroom": 0.435
+      },
+      {
+        "test_period_end": "2024-06-30",
+        "raw_ratio": 3.24,
+        "adjusted_ratio": 3.24,
+        "governing_threshold": 3.5,
+        "compliant": true,
+        "headroom": 0.26
+      },
+      {
+        "test_period_end": "2024-09-30",
+        "raw_ratio": 3.424,
+        "adjusted_ratio": 3.424,
+        "governing_threshold": 3.5,
+        "compliant": true,
+        "headroom": 0.076
+      },
+      {
+        "test_period_end": "2024-12-31",
+        "raw_ratio": 3.667,
+        "adjusted_ratio": 3.483,
+        "governing_threshold": 3.5,
+        "compliant": true,
+        "headroom": 0.017
+      },
+      {
+        "test_period_end": "2025-03-31",
+        "raw_ratio": 3.72,
+        "adjusted_ratio": 3.72,
+        "governing_threshold": 4.0,
+        "compliant": true,
+        "headroom": 0.28
+      },
+      {
+        "test_period_end": "2025-06-30",
+        "raw_ratio": 3.61,
+        "adjusted_ratio": 3.61,
+        "governing_threshold": 4.0,
+        "compliant": true,
+        "headroom": 0.39
+      }
+    ],
+    "naive_resolver_comparison": {
+      "2025-03-31": {
+        "naive_threshold": 3.5,
+        "actual_ratio": 3.72,
+        "naive_result": "WRONGLY FLAGGED AS BREACH",
+        "correct_result": "compliant"
+      },
+      "2025-06-30": {
+        "naive_threshold": 3.5,
+        "actual_ratio": 3.61,
+        "naive_result": "WRONGLY FLAGGED AS BREACH",
+        "correct_result": "compliant"
+      }
+    }
+  }
+}
