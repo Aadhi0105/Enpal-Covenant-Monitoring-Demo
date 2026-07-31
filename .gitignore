@@ -1,0 +1,22 @@
+# environment / secrets — critical: never let the API key reach GitHub
+.env
+.env.*
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+
+# jupyter
+.ipynb_checkpoints/
+
+# virtual environments
+venv/
+.venv/
+env/
+
+# macOS
+.DS_Store
+
+# editor
+.vscode/
