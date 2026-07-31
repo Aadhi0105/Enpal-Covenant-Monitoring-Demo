@@ -1,0 +1,115 @@
+{
+  "confidence_report": {
+    "facility_a_credit_agreement.txt": [
+      {
+        "covenant_name": "Delinquency Ratio / Delinquency Trigger",
+        "primary_citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 5.00%.",
+        "seen_in_passes": [
+          0,
+          1,
+          2
+        ],
+        "agreement_rate": 1.0,
+        "threshold_values_seen": [
+          "5.00%"
+        ],
+        "threshold_consistent": true,
+        "citation_verified": true,
+        "schema_valid": true,
+        "confidence": "high"
+      },
+      {
+        "covenant_name": "Overcollateralization Test",
+        "primary_citation": "\"Overcollateralization Target Amount\" means, as of any Determination Date, an amount equal to 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date.",
+        "seen_in_passes": [
+          0,
+          1,
+          2
+        ],
+        "agreement_rate": 1.0,
+        "threshold_values_seen": [
+          "8.00%"
+        ],
+        "threshold_consistent": true,
+        "citation_verified": true,
+        "schema_valid": true,
+        "confidence": "high"
+      }
+    ],
+    "facility_b_credit_agreement.txt": [
+      {
+        "covenant_name": "Delinquency Ratio / Delinquency Trigger",
+        "primary_citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 4.00%.",
+        "seen_in_passes": [
+          0,
+          1,
+          2
+        ],
+        "agreement_rate": 1.0,
+        "threshold_values_seen": [
+          "4.00%"
+        ],
+        "threshold_consistent": true,
+        "citation_verified": true,
+        "schema_valid": true,
+        "confidence": "high"
+      },
+      {
+        "covenant_name": "Reserve Account Covenant / Reserve Account Deficiency",
+        "primary_citation": "\"Required Reserve Amount\" means an amount equal to 2.00% of the Original Pool Balance.",
+        "seen_in_passes": [
+          0,
+          1,
+          2
+        ],
+        "agreement_rate": 1.0,
+        "threshold_values_seen": [
+          "2.00%"
+        ],
+        "threshold_consistent": true,
+        "citation_verified": true,
+        "schema_valid": true,
+        "confidence": "high"
+      }
+    ],
+    "facility_c_credit_agreement.txt": [
+      {
+        "covenant_name": "Consolidated Net Leverage Ratio",
+        "primary_citation": "The Borrower shall not permit the Consolidated Net Leverage Ratio, as of the last day of any Test Period ending on or after September 30, 2023, to exceed 3.50:1.00.",
+        "seen_in_passes": [
+          0,
+          1,
+          2
+        ],
+        "agreement_rate": 1.0,
+        "threshold_values_seen": [
+          "3.50:1.00"
+        ],
+        "threshold_consistent": true,
+        "citation_verified": true,
+        "schema_valid": true,
+        "confidence": "high"
+      }
+    ],
+    "facility_c_amendment_1.txt": [
+      {
+        "covenant_name": "Consolidated Net Leverage Ratio",
+        "primary_citation": "Test Periods ending on or after September 30, 2023 and on or before December 31, 2024: 3.50:1.00",
+        "seen_in_passes": [
+          0,
+          1,
+          2
+        ],
+        "agreement_rate": 1.0,
+        "threshold_values_seen": [
+          "3.50:1.00"
+        ],
+        "threshold_consistent": true,
+        "citation_verified": true,
+        "schema_valid": true,
+        "confidence": "high"
+      }
+    ]
+  },
+  "review_queue": []
+}
