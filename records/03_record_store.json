@@ -1,0 +1,58 @@
+{
+  "Facility A": {
+    "Delinquency Ratio / Delinquency Trigger": [
+      {
+        "value": "5.00%",
+        "from": "2024-03-14",
+        "to": null,
+        "priority": 0,
+        "source": "facility_a_credit_agreement.txt"
+      }
+    ],
+    "Overcollateralization Test": [
+      {
+        "value": "8.00%",
+        "from": "2024-03-14",
+        "to": null,
+        "priority": 0,
+        "source": "facility_a_credit_agreement.txt"
+      }
+    ]
+  },
+  "Facility B": {
+    "Delinquency Ratio / Delinquency Trigger": [
+      {
+        "value": "4.00%",
+        "from": "2024-11-04",
+        "to": null,
+        "priority": 0,
+        "source": "facility_b_credit_agreement.txt"
+      }
+    ]
+  },
+  "Facility C": {
+    "Consolidated Net Leverage Ratio": [
+      {
+        "value": "3.50:1.00",
+        "from": "2023-09-30",
+        "to": "2024-12-31",
+        "priority": 1,
+        "source": "facility_c_amendment_1.txt"
+      },
+      {
+        "value": "4.00:1.00",
+        "from": "2025-03-31",
+        "to": null,
+        "priority": 1,
+        "source": "facility_c_amendment_1.txt"
+      },
+      {
+        "value": "3.50:1.00",
+        "from": "2023-09-30",
+        "to": null,
+        "priority": 0,
+        "source": "facility_c_credit_agreement.txt"
+      }
+    ]
+  }
+}
