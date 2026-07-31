@@ -1,0 +1,5 @@
+anthropic          # Extraction — calls to the Anthropic API for schema-constrained, citation-grounded extraction
+python-dotenv      # Loads the API key from .env without hardcoding it anywhere in the notebooks
+pandas             # Reads synthetic_financials/*.csv, structures multi-period comparison output
+pydantic           # Defines and validates the covenant extraction schema — the "schema validation" half of the confidence signal
+jupyter            # Runs the .ipynb notebooks
