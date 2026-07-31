@@ -4,15 +4,15 @@
       {
         "covenant_name": "Delinquency Ratio / Delinquency Trigger",
         "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Outstanding Pool Balance of all Delinquent Receivables as of the last day of such Collection Period to (b) the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of the last day of such Collection Period.",
-        "definition_text": "The Delinquency Ratio is calculated as the aggregate Outstanding Pool Balance of all Delinquent Receivables (those with a scheduled payment unpaid for 60 days or more) as of the last day of a Collection Period, divided by the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of the last day of such Collection Period. A Delinquency Trigger occurs if this ratio exceeds 5.00%.",
+        "definition_text": "The Delinquency Ratio is calculated as the aggregate Outstanding Pool Balance of all Delinquent Receivables (receivables with a scheduled payment unpaid for 60 days or more) as of the last day of the Collection Period, divided by the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of the last day of that Collection Period, expressed as a percentage. A Delinquency Trigger occurs if this ratio exceeds the threshold.",
         "document_effective_date": "March 14, 2024",
-        "extraction_notes": "The operative covenant is stated in Section 5.01 (Borrower shall not permit a Delinquency Trigger to occur and be continuing), which incorporates the Delinquency Trigger definition (Delinquency Ratio exceeding 5.00%) from Article I. Breach becomes an Event of Default if uncured for 30 days per Section 7.01(c), and may be cured under Section 5.03.",
+        "extraction_notes": "The operative covenant (Section 5.01) prohibits the occurrence and continuation of a Delinquency Trigger, which is itself defined by reference to the Delinquency Ratio exceeding 5.00%. Breach becomes an Event of Default if uncured for 30 days per Section 7.01(c).",
         "supersedes": null,
         "threshold_operator": "must not exceed",
         "threshold_tiers": [
           {
             "threshold_value": "5.00%",
-            "citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 5.00%.",
+            "citation": "exceeds 5.00%",
             "applies_from": "March 14, 2024",
             "applies_to": null,
             "citation_verified": true
@@ -23,15 +23,15 @@
       {
         "covenant_name": "Overcollateralization Test",
         "definition_citation": "\"Overcollateralization Test\" means the test that is satisfied on any Determination Date if the Overcollateralization Amount as of such Determination Date is greater than or equal to the Overcollateralization Target Amount as of such Determination Date.",
-        "definition_text": "The Overcollateralization Amount is the excess, if any, of (a) the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of a Determination Date over (b) the Note Balance as of such Determination Date. The Overcollateralization Target Amount is 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date. The Overcollateralization Test is satisfied if the Overcollateralization Amount is greater than or equal to the Overcollateralization Target Amount.",
+        "definition_text": "The Overcollateralization Amount (Outstanding Pool Balance of Eligible Receivables in the Reference Pool minus the Note Balance) must be greater than or equal to the Overcollateralization Target Amount, which is defined as 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of the applicable Determination Date.",
         "document_effective_date": "March 14, 2024",
-        "extraction_notes": "The operative covenant is in Section 5.02 (Borrower shall ensure the Overcollateralization Test is satisfied as of each Determination Date). Failure for two consecutive Determination Dates, if uncured within 30 days per Section 7.01(c), constitutes an Event of Default. Cure available under Section 5.03.",
+        "extraction_notes": "Failure of the test for two consecutive Determination Dates, if uncured within 30 days per Section 7.01(c), constitutes an Event of Default. Cure available via contribution of additional Eligible Receivables or prepayment per Section 5.03.",
         "supersedes": null,
         "threshold_operator": "must be greater than or equal to",
         "threshold_tiers": [
           {
             "threshold_value": "8.00%",
-            "citation": "\"Overcollateralization Target Amount\" means, as of any Determination Date, an amount equal to 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date.",
+            "citation": "an amount equal to 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date",
             "applies_from": "March 14, 2024",
             "applies_to": null,
             "citation_verified": true
@@ -44,16 +44,16 @@
       {
         "covenant_name": "Delinquency Ratio / Delinquency Trigger",
         "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Outstanding Pool Balance of all Delinquent Receivables as of the last day of such Collection Period to (b) the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of the last day of such Collection Period.",
-        "definition_text": "The ratio, expressed as a percentage, of (a) the aggregate Outstanding Pool Balance of all Delinquent Receivables (receivables with a scheduled payment unpaid for 60 days or more) as of the last day of the Collection Period, to (b) the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of that same date. A Delinquency Trigger occurs if this ratio exceeds the specified threshold.",
+        "definition_text": "Delinquency Ratio equals the aggregate Outstanding Pool Balance of all Delinquent Receivables (Receivables with a scheduled payment unpaid 60+ days) as of the last day of the Collection Period, divided by the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of that same date, expressed as a percentage. A Delinquency Trigger occurs if this ratio exceeds the threshold.",
         "document_effective_date": "March 14, 2024",
-        "extraction_notes": "The operative covenant is stated in Section 5.01 ('The Borrower shall not permit a Delinquency Trigger to occur and be continuing'), with the numeric threshold defined in the 'Delinquency Trigger' definition in Article I. Breach becomes an Event of Default if uncured for 30 days per Section 7.01(c).",
+        "extraction_notes": "The operative covenant in Section 5.01 prohibits the Delinquency Trigger from occurring and continuing; the numeric threshold is embedded in the definition of 'Delinquency Trigger'.",
         "supersedes": null,
         "threshold_operator": "must not exceed",
         "threshold_tiers": [
           {
             "threshold_value": "5.00%",
             "citation": "the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 5.00%",
-            "applies_from": "Closing Date",
+            "applies_from": "March 14, 2024",
             "applies_to": null,
             "citation_verified": true
           }
@@ -63,16 +63,16 @@
       {
         "covenant_name": "Overcollateralization Test",
         "definition_citation": "\"Overcollateralization Test\" means the test that is satisfied on any Determination Date if the Overcollateralization Amount as of such Determination Date is greater than or equal to the Overcollateralization Target Amount as of such Determination Date.",
-        "definition_text": "Satisfied if the Overcollateralization Amount (the excess of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool over the Note Balance) as of a Determination Date is greater than or equal to the Overcollateralization Target Amount, which is defined as 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date.",
+        "definition_text": "The Overcollateralization Amount (Outstanding Pool Balance of Eligible Receivables in the Reference Pool minus the Note Balance) must be greater than or equal to the Overcollateralization Target Amount, which is defined as 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool, as of each Determination Date.",
         "document_effective_date": "March 14, 2024",
-        "extraction_notes": "Operative covenant in Section 5.02 requires the Overcollateralization Test to be satisfied as of each Determination Date; failure for two consecutive Determination Dates, if uncured within 30 days per Section 7.01(c), constitutes an Event of Default.",
+        "extraction_notes": "Section 5.02 requires the Overcollateralization Test to be satisfied as of each Determination Date; failure for two consecutive Determination Dates (if uncured) is an Event of Default per Section 7.01(c).",
         "supersedes": null,
         "threshold_operator": "must be greater than or equal to",
         "threshold_tiers": [
           {
             "threshold_value": "8.00%",
             "citation": "\"Overcollateralization Target Amount\" means, as of any Determination Date, an amount equal to 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date.",
-            "applies_from": "Closing Date",
+            "applies_from": "March 14, 2024",
             "applies_to": null,
             "citation_verified": true
           }
@@ -84,16 +84,16 @@
       {
         "covenant_name": "Delinquency Ratio / Delinquency Trigger",
         "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Outstanding Pool Balance of all Delinquent Receivables as of the last day of such Collection Period to (b) the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of the last day of such Collection Period.",
-        "definition_text": "Delinquency Ratio equals the aggregate Outstanding Pool Balance of all Delinquent Receivables (Receivables with a scheduled payment unpaid for 60 days or more) as of the last day of the Collection Period, divided by the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of the last day of such Collection Period. A Delinquency Trigger occurs if this ratio exceeds the specified threshold for the Collection Period.",
+        "definition_text": "Delinquency Ratio = (Outstanding Pool Balance of all Delinquent Receivables as of the last day of the Collection Period) / (Outstanding Pool Balance of all Receivables in the Reference Pool as of the last day of the Collection Period), expressed as a percentage. A Delinquent Receivable is one where a scheduled payment remains unpaid for 60 days or more from its original due date. A Delinquency Trigger occurs if the Delinquency Ratio exceeds the threshold.",
         "document_effective_date": "March 14, 2024",
-        "extraction_notes": "The operative covenant (Section 5.01) prohibits the Delinquency Trigger from occurring and continuing; the threshold itself is embedded in the definition of 'Delinquency Trigger' rather than in Section 5.01 directly.",
+        "extraction_notes": "The operative covenant (Section 5.01) prohibits the Delinquency Trigger from occurring and continuing, uncured for 30 days per Section 7.01(c), constituting an Event of Default.",
         "supersedes": null,
         "threshold_operator": "must not exceed",
         "threshold_tiers": [
           {
             "threshold_value": "5.00%",
             "citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 5.00%.",
-            "applies_from": null,
+            "applies_from": "Closing Date (March 14, 2024)",
             "applies_to": null,
             "citation_verified": true
           }
@@ -103,16 +103,16 @@
       {
         "covenant_name": "Overcollateralization Test",
         "definition_citation": "\"Overcollateralization Test\" means the test that is satisfied on any Determination Date if the Overcollateralization Amount as of such Determination Date is greater than or equal to the Overcollateralization Target Amount as of such Determination Date.",
-        "definition_text": "The Overcollateralization Amount is the excess of (a) the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of a Determination Date over (b) the Note Balance (i.e., Advance Balance) as of such date. The Overcollateralization Target Amount equals 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date. The Overcollateralization Test is satisfied if the Overcollateralization Amount is greater than or equal to the Overcollateralization Target Amount.",
+        "definition_text": "Overcollateralization Amount = Outstanding Pool Balance of Eligible Receivables in the Reference Pool minus the Note Balance, as of a Determination Date. Overcollateralization Target Amount = 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date. The Overcollateralization Test is satisfied if the Overcollateralization Amount is greater than or equal to the Overcollateralization Target Amount.",
         "document_effective_date": "March 14, 2024",
-        "extraction_notes": "The 8.00% figure is the target amount used as the basis for comparison, not itself the direct threshold of a ratio, but functions as the covenant threshold via the Overcollateralization Target Amount definition.",
+        "extraction_notes": "Operative covenant in Section 5.02 requires the test be satisfied as of each Determination Date; failure for two consecutive Determination Dates, if uncured within 30 days (Section 7.01(c)), is an Event of Default.",
         "supersedes": null,
         "threshold_operator": "must be greater than or equal to",
         "threshold_tiers": [
           {
             "threshold_value": "8.00%",
             "citation": "\"Overcollateralization Target Amount\" means, as of any Determination Date, an amount equal to 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date.",
-            "applies_from": null,
+            "applies_from": "Closing Date (March 14, 2024)",
             "applies_to": null,
             "citation_verified": true
           }
@@ -126,7 +126,10 @@
       {
         "covenant_name": "Delinquency Ratio / Delinquency Trigger",
         "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables as of the last day of such Collection Period to (b) the Original Pool Balance of the Reference Pool.",
-        "definition_text": "The Delinquency Ratio is the aggregate Original Pool Balance of all Delinquent Receivables (receivables with a scheduled payment unpaid 90+ days) as of the last day of the Collection Period, divided by the Original Pool Balance of the Reference Pool, expressed as a percentage. A Delinquency Trigger occurs if this ratio exceeds 4.00% for a Collection Period.",
+        "definition_text": "The ratio, expressed as a percentage, of (a) the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables as of the last day of a Collection Period, to (b) the Original Pool Balance of the Reference Pool. A Delinquency Trigger occurs if this ratio exceeds the threshold for the applicable Collection Period.",
+        "document_effective_date": "November 4, 2024",
+        "extraction_notes": "The operative covenant in Section 5.01 prohibits a Delinquency Trigger from occurring and continuing; the trigger itself is defined by the Delinquency Ratio exceeding 4.00%. A breach uncured for 30 days after the relevant Determination Date becomes an Event of Default per Section 7.01(c).",
+        "supersedes": null,
         "threshold_operator": "must not exceed",
         "threshold_tiers": [
           {
@@ -137,57 +140,94 @@
             "citation_verified": true
           }
         ],
+        "definition_citation_verified": true
+      },
+      {
+        "covenant_name": "Reserve Account Deficiency / Required Reserve Amount",
+        "definition_citation": "\"Reserve Account Deficiency\" means, as of any Determination Date, the event that occurs if the Reserve Account Balance as of such Determination Date is less than the Required Reserve Amount.",
+        "definition_text": "A Reserve Account Deficiency occurs when the Reserve Account Balance (amount on deposit in the Reserve Account) as of any Determination Date is less than the Required Reserve Amount, which is defined as 2.00% of the Original Pool Balance.",
         "document_effective_date": "November 4, 2024",
-        "extraction_notes": "The operative covenant is in Section 5.01: 'The Borrower shall not permit a Delinquency Trigger to occur and be continuing.' Cure available under Section 5.03; uncured breach for 30 days per Section 7.01(c) is an Event of Default.",
+        "extraction_notes": "Section 5.02 requires the Borrower to ensure no Reserve Account Deficiency exists as of any Determination Date; if one exists, the Servicer must replenish using Available Funds on the next Payment Date. Uncured for 30 days becomes an Event of Default per Section 7.01(c).",
         "supersedes": null,
+        "threshold_operator": "must be greater than or equal to",
+        "threshold_tiers": [
+          {
+            "threshold_value": "2.00% of the Original Pool Balance",
+            "citation": "\"Required Reserve Amount\" means an amount equal to 2.00% of the Original Pool Balance.",
+            "applies_from": "Closing Date (November 4, 2024)",
+            "applies_to": null,
+            "citation_verified": true
+          }
+        ],
+        "definition_citation_verified": true
+      }
+    ],
+    [
+      {
+        "covenant_name": "Delinquency Ratio / Delinquency Trigger",
+        "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables as of the last day of such Collection Period to (b) the Original Pool Balance of the Reference Pool.",
+        "definition_text": "Delinquency Ratio is calculated as the aggregate Original Pool Balance of all Delinquent Receivables (Receivables 90+ days past due) as of the last day of a Collection Period, divided by the Original Pool Balance of the Reference Pool, expressed as a percentage. A Delinquency Trigger occurs if this ratio exceeds 4.00% for a Collection Period.",
+        "document_effective_date": "November 4, 2024",
+        "extraction_notes": "Delinquent Receivable defined separately as a Receivable with any scheduled payment unpaid 90+ days from original due date. Delinquency Trigger breach becomes an Event of Default if uncured for 30 days per Section 7.01(c).",
+        "supersedes": null,
+        "threshold_operator": "must not exceed",
+        "threshold_tiers": [
+          {
+            "threshold_value": "4.00%",
+            "citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 4.00%.",
+            "applies_from": "Closing Date (November 4, 2024)",
+            "applies_to": null,
+            "citation_verified": true
+          }
+        ],
+        "definition_citation_verified": true
+      },
+      {
+        "covenant_name": "Reserve Account Deficiency / Required Reserve Amount",
+        "definition_citation": "\"Reserve Account Deficiency\" means, as of any Determination Date, the event that occurs if the Reserve Account Balance as of such Determination Date is less than the Required Reserve Amount.",
+        "definition_text": "A Reserve Account Deficiency occurs if the Reserve Account Balance (amount on deposit in the Reserve Account) is less than the Required Reserve Amount (2.00% of the Original Pool Balance) as of any Determination Date. The Borrower covenants that no such deficiency shall exist as of any Determination Date.",
+        "document_effective_date": "November 4, 2024",
+        "extraction_notes": "If a deficiency exists, Servicer must replenish from Available Funds on the next Payment Date prior to distributions to Borrower; uncured deficiency for 30 days after the Determination Date first occurring constitutes an Event of Default per Section 7.01(c).",
+        "supersedes": null,
+        "threshold_operator": "must be greater than or equal to",
+        "threshold_tiers": [
+          {
+            "threshold_value": "2.00%",
+            "citation": "\"Required Reserve Amount\" means an amount equal to 2.00% of the Original Pool Balance.",
+            "applies_from": "Closing Date (November 4, 2024)",
+            "applies_to": null,
+            "citation_verified": true
+          }
+        ],
+        "definition_citation_verified": true
+      }
+    ],
+    [
+      {
+        "covenant_name": "Delinquency Ratio / Delinquency Trigger",
+        "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables as of the last day of such Collection Period to (b) the Original Pool Balance of the Reference Pool.",
+        "definition_text": "The percentage ratio of the aggregate Original Pool Balance of all Delinquent Receivables (receivables with a scheduled payment unpaid 90+ days) as of the last day of the Collection Period, divided by the Original Pool Balance of the Reference Pool.",
+        "document_effective_date": "November 4, 2024",
+        "extraction_notes": "The operative covenant (Section 5.01) prohibits the occurrence and continuation of a 'Delinquency Trigger', which is defined by reference to the Delinquency Ratio exceeding 4.00%.",
+        "supersedes": null,
+        "threshold_operator": "must not exceed",
+        "threshold_tiers": [
+          {
+            "threshold_value": "4.00%",
+            "citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 4.00%.",
+            "applies_from": "Closing Date (November 4, 2024)",
+            "applies_to": null,
+            "citation_verified": true
+          }
+        ],
         "definition_citation_verified": true
       },
       {
         "covenant_name": "Reserve Account Covenant / Reserve Account Deficiency",
         "definition_citation": "\"Reserve Account Deficiency\" means, as of any Determination Date, the event that occurs if the Reserve Account Balance as of such Determination Date is less than the Required Reserve Amount.",
         "definition_text": "A Reserve Account Deficiency occurs if the Reserve Account Balance (amount on deposit in the Reserve Account) is less than the Required Reserve Amount (2.00% of the Original Pool Balance) as of any Determination Date.",
-        "threshold_operator": "must be greater than or equal to",
-        "threshold_tiers": [
-          {
-            "threshold_value": "2.00%",
-            "citation": "\"Required Reserve Amount\" means an amount equal to 2.00% of the Original Pool Balance.",
-            "applies_from": "Closing Date (November 4, 2024)",
-            "applies_to": null,
-            "citation_verified": true
-          }
-        ],
         "document_effective_date": "November 4, 2024",
-        "extraction_notes": "Operative covenant in Section 5.02: 'The Borrower shall ensure that no Reserve Account Deficiency exists as of any Determination Date.' Uncured deficiency for 30 days following the Determination Date on which it first occurred constitutes an Event of Default per Section 5.02 and Section 7.01(c).",
-        "supersedes": null,
-        "definition_citation_verified": true
-      }
-    ],
-    [
-      {
-        "covenant_name": "Delinquency Ratio / Delinquency Trigger",
-        "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables as of the last day of such Collection Period to (b) the Original Pool Balance of the Reference Pool.",
-        "definition_text": "Ratio of the aggregate Original Pool Balance of Delinquent Receivables (Receivables with a scheduled payment unpaid 90+ days) as of the last day of the Collection Period, divided by the Original Pool Balance of the Reference Pool, expressed as a percentage.",
-        "document_effective_date": "November 4, 2024",
-        "extraction_notes": "The operative covenant in Section 5.01 prohibits the Delinquency Trigger from occurring and continuing; the trigger itself is defined by the 4.00% threshold on the Delinquency Ratio. Breach becomes an Event of Default if uncured for 30 days per Section 7.01(c).",
-        "supersedes": null,
-        "threshold_operator": "must not exceed",
-        "threshold_tiers": [
-          {
-            "threshold_value": "4.00%",
-            "citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 4.00%.",
-            "applies_from": "Closing Date (November 4, 2024)",
-            "applies_to": null,
-            "citation_verified": true
-          }
-        ],
-        "definition_citation_verified": true
-      },
-      {
-        "covenant_name": "Reserve Account Covenant (Reserve Account Deficiency)",
-        "definition_citation": "\"Reserve Account Deficiency\" means, as of any Determination Date, the event that occurs if the Reserve Account Balance as of such Determination Date is less than the Required Reserve Amount.",
-        "definition_text": "A Reserve Account Deficiency occurs if the Reserve Account Balance (amount on deposit in the Reserve Account) is less than the Required Reserve Amount (2.00% of the Original Pool Balance) as of any Determination Date.",
-        "document_effective_date": "November 4, 2024",
-        "extraction_notes": "Section 5.02 requires the Borrower to ensure no Reserve Account Deficiency exists as of any Determination Date; uncured deficiency for 30 days constitutes an Event of Default under Section 7.01(c).",
+        "extraction_notes": "Section 5.02 requires the Borrower to ensure no Reserve Account Deficiency exists; the threshold is effectively that the Reserve Account Balance must be at least equal to the Required Reserve Amount, which is defined as 2.00% of the Original Pool Balance.",
         "supersedes": null,
         "threshold_operator": "must be greater than or equal to",
         "threshold_tiers": [
@@ -199,46 +239,6 @@
             "citation_verified": true
           }
         ],
-        "definition_citation_verified": true
-      }
-    ],
-    [
-      {
-        "covenant_name": "Delinquency Ratio / Delinquency Trigger",
-        "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables as of the last day of such Collection Period to (b) the Original Pool Balance of the Reference Pool.",
-        "definition_text": "Ratio of the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables (90+ days past due) as of the last day of the Collection Period, divided by the Original Pool Balance of the Reference Pool, expressed as a percentage.",
-        "threshold_operator": "must not exceed",
-        "threshold_tiers": [
-          {
-            "threshold_value": "4.00%",
-            "citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 4.00%.",
-            "applies_from": "Closing Date",
-            "applies_to": null,
-            "citation_verified": true
-          }
-        ],
-        "document_effective_date": "November 4, 2024",
-        "extraction_notes": "Covenant operative clause is Section 5.01, which prohibits a Delinquency Trigger from occurring and continuing; the trigger itself is defined via the Delinquency Ratio exceeding 4.00%. Failure to cure within 30 days per Section 7.01(c) constitutes an Event of Default.",
-        "supersedes": null,
-        "definition_citation_verified": true
-      },
-      {
-        "covenant_name": "Reserve Account Deficiency / Required Reserve Amount",
-        "definition_citation": "\"Reserve Account Deficiency\" means, as of any Determination Date, the event that occurs if the Reserve Account Balance as of such Determination Date is less than the Required Reserve Amount.",
-        "definition_text": "A Reserve Account Deficiency occurs if the Reserve Account Balance (amount on deposit in the Reserve Account) is less than the Required Reserve Amount (2.00% of the Original Pool Balance) as of any Determination Date.",
-        "threshold_operator": "must be greater than or equal to",
-        "threshold_tiers": [
-          {
-            "threshold_value": "2.00%",
-            "citation": "\"Required Reserve Amount\" means an amount equal to 2.00% of the Original Pool Balance.",
-            "applies_from": "Closing Date",
-            "applies_to": null,
-            "citation_verified": true
-          }
-        ],
-        "document_effective_date": "November 4, 2024",
-        "extraction_notes": "Operative covenant is Section 5.02: Borrower must ensure no Reserve Account Deficiency exists as of any Determination Date (i.e., Reserve Account Balance must be >= Required Reserve Amount, which is 2.00% of Original Pool Balance). A deficiency uncured for 30 days after the Determination Date on which it first occurred is an Event of Default per Section 7.01(c).",
-        "supersedes": null,
         "definition_citation_verified": true
       }
     ]
@@ -248,16 +248,16 @@
       {
         "covenant_name": "Consolidated Net Leverage Ratio",
         "definition_citation": "\"Consolidated Net Leverage Ratio\" means, as of the last day of any Test Period, the ratio of (a) Consolidated Net Debt as of such date to (b) Consolidated EBITDA for the Test Period then ended.",
-        "definition_text": "Ratio of Consolidated Net Debt (aggregate outstanding principal amount of Indebtedness for borrowed money minus unrestricted cash and cash equivalents) to Consolidated EBITDA (Consolidated Net Income plus interest expense, taxes, depreciation and amortization, non-cash stock-based compensation, and certain approved non-recurring/extraordinary items) for the relevant Test Period.",
+        "definition_text": "Ratio of Consolidated Net Debt (aggregate outstanding principal amount of Indebtedness for borrowed money minus unrestricted cash and cash equivalents) to Consolidated EBITDA (Consolidated Net Income plus interest expense, taxes, depreciation and amortization, non-cash stock-based compensation, and certain approved non-recurring/extraordinary items) for the applicable Test Period.",
         "document_effective_date": "June 3, 2023",
-        "extraction_notes": "Covenant includes an equity cure right (Section 6.02) allowing cash contributions to be added to Consolidated EBITDA for purposes of calculating this ratio, exercisable no more than twice during the term of the Agreement.",
+        "extraction_notes": "Covenant is subject to a cure right under Section 6.02, allowing equity contributions to be added to Consolidated EBITDA (up to twice during the term) to cure a breach of the leverage ratio.",
         "supersedes": null,
         "threshold_operator": "must not exceed",
         "threshold_tiers": [
           {
             "threshold_value": "3.50:1.00",
             "citation": "The Borrower shall not permit the Consolidated Net Leverage Ratio, as of the last day of any Test Period ending on or after September 30, 2023, to exceed 3.50:1.00.",
-            "applies_from": "Test Period ending on or after September 30, 2023",
+            "applies_from": "September 30, 2023",
             "applies_to": null,
             "citation_verified": true
           }
@@ -269,16 +269,16 @@
       {
         "covenant_name": "Consolidated Net Leverage Ratio",
         "definition_citation": "\"Consolidated Net Leverage Ratio\" means, as of the last day of any Test Period, the ratio of (a) Consolidated Net Debt as of such date to (b) Consolidated EBITDA for the Test Period then ended.",
-        "definition_text": "Ratio of Consolidated Net Debt (aggregate outstanding principal amount of Indebtedness for borrowed money minus unrestricted cash and cash equivalents) to Consolidated EBITDA (Consolidated Net Income plus interest expense, taxes, depreciation and amortization, non-cash stock-based compensation, and other approved non-recurring/extraordinary items), each for the Test Period, on a consolidated basis.",
+        "definition_text": "The ratio of Consolidated Net Debt (aggregate outstanding principal amount of Indebtedness for borrowed money of the Borrower and its Subsidiaries on a consolidated basis, minus unrestricted cash and cash equivalents) to Consolidated EBITDA (Consolidated Net Income plus interest expense, taxes, depreciation and amortization, non-cash stock-based compensation, and certain other approved non-recurring/extraordinary items) for the relevant Test Period.",
         "document_effective_date": "June 3, 2023",
-        "extraction_notes": "Covenant is subject to a cure right under Section 6.02, allowing up to two equity cure contributions during the term of the Agreement, which are added to Consolidated EBITDA for the relevant Test Period for purposes of calculating this ratio.",
+        "extraction_notes": "Covenant includes an equity cure right (Section 6.02): a cash contribution can be added to Consolidated EBITDA (not subtracted from Consolidated Net Debt) for purposes of calculating this ratio, exercisable no more than twice during the term of the Agreement.",
         "supersedes": null,
         "threshold_operator": "must not exceed",
         "threshold_tiers": [
           {
             "threshold_value": "3.50:1.00",
             "citation": "The Borrower shall not permit the Consolidated Net Leverage Ratio, as of the last day of any Test Period ending on or after September 30, 2023, to exceed 3.50:1.00.",
-            "applies_from": "Test Period ending on or after September 30, 2023",
+            "applies_from": "September 30, 2023",
             "applies_to": null,
             "citation_verified": true
           }
@@ -290,16 +290,16 @@
       {
         "covenant_name": "Consolidated Net Leverage Ratio",
         "definition_citation": "\"Consolidated Net Leverage Ratio\" means, as of the last day of any Test Period, the ratio of (a) Consolidated Net Debt as of such date to (b) Consolidated EBITDA for the Test Period then ended.",
-        "definition_text": "Ratio of Consolidated Net Debt (aggregate outstanding principal amount of Indebtedness for borrowed money minus unrestricted cash and cash equivalents) to Consolidated EBITDA (Consolidated Net Income plus interest expense, taxes, D&A, non-cash stock comp, and certain approved non-recurring items) for the Test Period.",
+        "definition_text": "Ratio of Consolidated Net Debt (aggregate outstanding principal amount of Indebtedness for borrowed money minus unrestricted cash and cash equivalents) to Consolidated EBITDA (Consolidated Net Income plus interest expense, taxes, depreciation and amortization, non-cash stock-based compensation, and certain approved non-recurring/extraordinary items) for the relevant Test Period (trailing four fiscal quarters).",
         "document_effective_date": "June 3, 2023",
-        "extraction_notes": "Subject to a cure right under Section 6.02, exercisable no more than twice during the term of the Agreement, allowing an equity cure contribution to be added to Consolidated EBITDA for purposes of calculating this ratio.",
+        "extraction_notes": "Cure right under Section 6.02 permits Borrower to add equity contributions to Consolidated EBITDA for purposes of this ratio calculation, exercisable no more than twice during the term of the Agreement, which affects compliance testing but not the stated threshold itself.",
         "supersedes": null,
         "threshold_operator": "must not exceed",
         "threshold_tiers": [
           {
             "threshold_value": "3.50:1.00",
             "citation": "The Borrower shall not permit the Consolidated Net Leverage Ratio, as of the last day of any Test Period ending on or after September 30, 2023, to exceed 3.50:1.00.",
-            "applies_from": "Test Period ending on or after September 30, 2023",
+            "applies_from": "September 30, 2023",
             "applies_to": null,
             "citation_verified": true
           }
@@ -313,51 +313,23 @@
       {
         "covenant_name": "Consolidated Net Leverage Ratio",
         "definition_citation": null,
-        "definition_text": "Ratio of consolidated net leverage (debt net of cash, as defined in the Existing Credit Agreement) tested as of the last day of each Test Period. The specific numerator/denominator definition is not set forth in this Amendment (it is defined in the Existing Credit Agreement, not reproduced here).",
-        "threshold_operator": "must not exceed",
-        "threshold_tiers": [
-          {
-            "threshold_value": "3.50:1.00",
-            "applies_from": "September 30, 2023",
-            "applies_to": "December 31, 2024",
-            "citation": "Test Periods ending on or after September 30, 2023 and on or before December 31, 2024: 3.50:1.00",
-            "citation_verified": true
-          },
-          {
-            "threshold_value": "4.00:1.00",
-            "applies_from": "March 31, 2025",
-            "applies_to": null,
-            "citation": "Test Periods ending on or after March 31, 2025: 4.00:1.00",
-            "citation_verified": true
-          }
-        ],
+        "definition_text": "Ratio measuring Consolidated Net Leverage as of the last day of any Test Period; specific numerator/denominator components are not defined in this amendment document (defined in the Existing Credit Agreement, not reproduced here).",
         "document_effective_date": "April 11, 2025",
-        "extraction_notes": "This Amendment waives a specific default (Consolidated Net Leverage Ratio in excess of 3.50:1.00 for Test Period ending March 31, 2025) and amends the covenant prospectively; the Amendment clarifies that the pre-amendment ratio (3.50:1.00) still governs Test Periods ended on or before December 31, 2024, while the new ratio (4.00:1.00) governs Test Periods ending on or after March 31, 2025, including the period giving rise to the waived default. The governing definition of 'Consolidated Net Leverage Ratio' itself is located in the Existing Credit Agreement (dated June 3, 2023), which is not included in this source document, so no verbatim definition citation could be located.",
-        "supersedes": "Section 6.01 (Consolidated Net Leverage Ratio covenant) of the Existing Credit Agreement dated June 3, 2023, which set a maximum ratio of 3.50:1.00 for all Test Periods.",
-        "definition_citation_verified": null
-      }
-    ],
-    [
-      {
-        "covenant_name": "Consolidated Net Leverage Ratio",
-        "definition_citation": null,
-        "definition_text": "The Consolidated Net Leverage Ratio is a leverage ratio defined elsewhere in the Existing Credit Agreement (not restated in this Amendment); the Amendment specifies the maximum permitted ratio as of the last day of each Test Period.",
-        "document_effective_date": "April 11, 2025",
-        "extraction_notes": "The full definition (numerator/denominator) of 'Consolidated Net Leverage Ratio' is not restated in this Amendment; it presumably resides in the Existing Credit Agreement dated June 3, 2023, which was not provided. This Amendment only amends the threshold schedule in Section 6.01 and waives a specific default. The Amendment Effective Date is described as 'the date first written above,' which is April 11, 2025, subject to satisfaction of conditions in Section 4.",
-        "supersedes": "Section 6.01 (Consolidated Net Leverage Ratio covenant) of the Existing Credit Agreement dated June 3, 2023, which set a maximum ratio of 3.50:1.00 for Test Periods ending on or after September 30, 2023 and on or before December 31, 2024, and presumably thereafter absent this Amendment.",
+        "extraction_notes": "The amendment amends and restates Section 6.01 of the Existing Credit Agreement to introduce a stepped threshold. The definition of 'Consolidated Net Leverage Ratio' itself is not restated in this amendment document, only the compliance threshold. A waiver was also granted for a Specified Default (anticipated breach of 3.50:1.00 for Test Period ending March 31, 2025), but that waiver does not change the historical threshold applicable to that period.",
+        "supersedes": "Section 6.01 (Consolidated Net Leverage Ratio) of the Existing Credit Agreement, dated as of June 3, 2023",
         "threshold_operator": "must not exceed",
         "threshold_tiers": [
           {
             "threshold_value": "3.50:1.00",
             "citation": "Test Periods ending on or after September 30, 2023 and on or before December 31, 2024: 3.50:1.00",
-            "applies_from": "September 30, 2023",
-            "applies_to": "December 31, 2024",
+            "applies_from": "Test Periods ending on or after September 30, 2023",
+            "applies_to": "Test Periods ending on or before December 31, 2024",
             "citation_verified": true
           },
           {
             "threshold_value": "4.00:1.00",
             "citation": "Test Periods ending on or after March 31, 2025: 4.00:1.00",
-            "applies_from": "March 31, 2025",
+            "applies_from": "Test Periods ending on or after March 31, 2025",
             "applies_to": null,
             "citation_verified": true
           }
@@ -369,27 +341,55 @@
       {
         "covenant_name": "Consolidated Net Leverage Ratio",
         "definition_citation": null,
-        "definition_text": "Ratio of consolidated net indebtedness to consolidated EBITDA (or similar metric); precise numerator/denominator definition not included in this amendment document, which only amends the applicable threshold levels in Section 6.01.",
+        "definition_text": "Ratio of consolidated net leverage (debt net of cash, per Existing Credit Agreement definitions not reproduced in this amendment) tested as of the last day of each Test Period; specific numerator/denominator definition not included in this document.",
         "threshold_operator": "must not exceed",
         "threshold_tiers": [
           {
             "threshold_value": "3.50:1.00",
+            "citation": "Test Periods ending on or after September 30, 2023 and on or before December 31, 2024: 3.50:1.00",
             "applies_from": "September 30, 2023",
             "applies_to": "December 31, 2024",
-            "citation": "Test Periods ending on or after September 30, 2023 and on or before December 31, 2024: 3.50:1.00",
             "citation_verified": true
           },
           {
             "threshold_value": "4.00:1.00",
+            "citation": "Test Periods ending on or after March 31, 2025: 4.00:1.00",
             "applies_from": "March 31, 2025",
             "applies_to": null,
-            "citation": "Test Periods ending on or after March 31, 2025: 4.00:1.00",
             "citation_verified": true
           }
         ],
         "document_effective_date": "April 11, 2025",
-        "supersedes": "Section 6.01 of the Existing Credit Agreement (Term Loan Credit Agreement dated June 3, 2023), which previously set the Consolidated Net Leverage Ratio maximum at 3.50:1.00 for all Test Periods, including the Test Period ending March 31, 2025",
-        "extraction_notes": "This amendment restates Section 6.01 to raise the threshold to 4.00:1.00 for Test Periods ending on or after March 31, 2025, while confirming the prior 3.50:1.00 threshold remains governing for periods ended on or before December 31, 2024. The document does not include the underlying definition of 'Consolidated Net Leverage Ratio' (i.e., the calculation of consolidated net indebtedness/EBITDA); that definition presumably resides in the Existing Credit Agreement, which is not provided here. A separate Specified Default (breach of the prior 3.50:1.00 ratio for Test Period ending March 31, 2025) was waived under Section 2, but this is a one-time waiver, not a change in threshold applicable to that period going forward -- the 4.00:1.00 ratio governs that period per the amendment's express terms.",
+        "extraction_notes": "This is an amendment; the underlying definition of 'Consolidated Net Leverage Ratio' is not set forth in this document (it resides in the Existing Credit Agreement dated June 3, 2023, not provided). The amendment also references and waives a 'Specified Default' where the Borrower anticipated reporting a ratio in excess of 3.50:1.00 for the Test Period ending March 31, 2025, which was waived and the covenant amended retroactively to apply the 4.00:1.00 threshold to that Test Period. A prior cure right was also exercised for the Test Period ended December 31, 2024 under Section 6.02, but no covenant terms for that cure mechanism are detailed here.",
+        "supersedes": "Section 6.01 (Consolidated Net Leverage Ratio) of the Existing Credit Agreement dated June 3, 2023",
+        "definition_citation_verified": null
+      }
+    ],
+    [
+      {
+        "covenant_name": "Consolidated Net Leverage Ratio",
+        "definition_citation": null,
+        "definition_text": "Ratio of consolidated net leverage (debt net of cash) to a measure of earnings, as defined elsewhere in the Existing Credit Agreement (definition not included in this amendment document).",
+        "document_effective_date": "April 11, 2025",
+        "extraction_notes": "The full definition of 'Consolidated Net Leverage Ratio' (numerator/denominator components) is not set forth in this Amendment document; it is defined in the Existing Credit Agreement dated June 3, 2023, which is not provided here. This Amendment amends and restates Section 6.01 of the Existing Credit Agreement to add a new threshold tier effective for Test Periods ending on or after March 31, 2025. The waiver of the Specified Default (anticipated breach of the prior 3.50:1.00 ratio for the Test Period ending March 31, 2025) is a separate, non-recurring relief and not itself a covenant threshold.",
+        "supersedes": "Section 6.01 (Consolidated Net Leverage Ratio) of the Existing Credit Agreement, dated as of June 3, 2023",
+        "threshold_operator": "must not exceed",
+        "threshold_tiers": [
+          {
+            "threshold_value": "3.50:1.00",
+            "citation": "Test Periods ending on or after September 30, 2023 and on or before December 31, 2024: 3.50:1.00",
+            "applies_from": "September 30, 2023",
+            "applies_to": "December 31, 2024",
+            "citation_verified": true
+          },
+          {
+            "threshold_value": "4.00:1.00",
+            "citation": "Test Periods ending on or after March 31, 2025: 4.00:1.00",
+            "applies_from": "March 31, 2025",
+            "applies_to": null,
+            "citation_verified": true
+          }
+        ],
         "definition_citation_verified": null
       }
     ]
