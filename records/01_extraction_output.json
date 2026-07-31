@@ -1,0 +1,131 @@
+{
+  "facility_a_credit_agreement.txt": [
+    {
+      "covenant_name": "Delinquency Ratio / Delinquency Trigger",
+      "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Outstanding Pool Balance of all Delinquent Receivables as of the last day of such Collection Period to (b) the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of the last day of such Collection Period.",
+      "definition_text": "The Delinquency Ratio is the ratio, expressed as a percentage, of (a) the aggregate Outstanding Pool Balance of all Delinquent Receivables (receivables with a scheduled payment unpaid for 60+ days) as of the last day of a Collection Period, to (b) the aggregate Outstanding Pool Balance of all Receivables in the Reference Pool as of the same date. A Delinquency Trigger occurs if this ratio exceeds 5.00% for the Collection Period.",
+      "threshold_operator": "must not exceed",
+      "threshold_tiers": [
+        {
+          "threshold_value": "5.00%",
+          "citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 5.00%.",
+          "applies_from": "Closing Date (March 14, 2024)",
+          "applies_to": null,
+          "citation_verified": true
+        }
+      ],
+      "document_effective_date": "March 14, 2024",
+      "extraction_notes": "Operative covenant is in Section 5.01: 'The Borrower shall not permit a Delinquency Trigger to occur and be continuing.' Breach uncured for 30 days per Section 7.01(c) constitutes an Event of Default.",
+      "supersedes": null,
+      "definition_citation_verified": true
+    },
+    {
+      "covenant_name": "Overcollateralization Test",
+      "definition_citation": "\"Overcollateralization Test\" means the test that is satisfied on any Determination Date if the Overcollateralization Amount as of such Determination Date is greater than or equal to the Overcollateralization Target Amount as of such Determination Date.",
+      "definition_text": "The Overcollateralization Amount is the excess, if any, of (a) the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of a Determination Date over (b) the Note Balance as of such date. The Overcollateralization Target Amount is 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date. The Overcollateralization Test is satisfied if the Overcollateralization Amount is greater than or equal to the Overcollateralization Target Amount.",
+      "threshold_operator": "must be greater than or equal to",
+      "threshold_tiers": [
+        {
+          "threshold_value": "8.00%",
+          "citation": "\"Overcollateralization Target Amount\" means, as of any Determination Date, an amount equal to 8.00% of the Outstanding Pool Balance of Eligible Receivables in the Reference Pool as of such Determination Date.",
+          "applies_from": "Closing Date (March 14, 2024)",
+          "applies_to": null,
+          "citation_verified": true
+        }
+      ],
+      "document_effective_date": "March 14, 2024",
+      "extraction_notes": "Operative covenant is in Section 5.02: 'The Borrower shall ensure that the Overcollateralization Test is satisfied as of each Determination Date.' Failure for two consecutive Determination Dates, if uncured within 30 days per Section 7.01(c), constitutes an Event of Default.",
+      "supersedes": null,
+      "definition_citation_verified": true
+    }
+  ],
+  "facility_b_credit_agreement.txt": [
+    {
+      "covenant_name": "Delinquency Ratio / Delinquency Trigger",
+      "definition_citation": "\"Delinquency Ratio\" means, for any Collection Period, the ratio (expressed as a percentage) of (a) the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables as of the last day of such Collection Period to (b) the Original Pool Balance of the Reference Pool.",
+      "definition_text": "Delinquency Ratio is the aggregate Original Pool Balance of all Receivables that are Delinquent Receivables (90+ days past due) as of the last day of the Collection Period, divided by the Original Pool Balance of the Reference Pool, expressed as a percentage.",
+      "document_effective_date": "November 4, 2024",
+      "extraction_notes": "The operative covenant (Section 5.01) prohibits the occurrence and continuance of a 'Delinquency Trigger', which is defined by reference to the Delinquency Ratio exceeding 4.00%. Breach uncured for 30 days after the Determination Date constitutes an Event of Default per Section 7.01(c).",
+      "supersedes": null,
+      "threshold_operator": "must not exceed",
+      "threshold_tiers": [
+        {
+          "threshold_value": "4.00%",
+          "citation": "\"Delinquency Trigger\" means, with respect to any Collection Period, the event that occurs if the Delinquency Ratio for such Collection Period, as reported pursuant to Section 6.01, exceeds 4.00%.",
+          "applies_from": "Closing Date (November 4, 2024)",
+          "applies_to": null,
+          "citation_verified": true
+        }
+      ],
+      "definition_citation_verified": true
+    },
+    {
+      "covenant_name": "Reserve Account Deficiency / Required Reserve Amount",
+      "definition_citation": "\"Reserve Account Deficiency\" means, as of any Determination Date, the event that occurs if the Reserve Account Balance as of such Determination Date is less than the Required Reserve Amount.",
+      "definition_text": "A Reserve Account Deficiency occurs when the Reserve Account Balance (amount on deposit in the Reserve Account) falls below the Required Reserve Amount, which is defined as 2.00% of the Original Pool Balance.",
+      "document_effective_date": "November 4, 2024",
+      "extraction_notes": "Section 5.02 requires the Borrower to ensure no Reserve Account Deficiency exists as of any Determination Date; uncured deficiency for 30 days constitutes an Event of Default per Section 7.01(c).",
+      "supersedes": null,
+      "threshold_operator": "must be greater than or equal to",
+      "threshold_tiers": [
+        {
+          "threshold_value": "2.00% of Original Pool Balance",
+          "citation": "\"Required Reserve Amount\" means an amount equal to 2.00% of the Original Pool Balance.",
+          "applies_from": "Closing Date (November 4, 2024)",
+          "applies_to": null,
+          "citation_verified": true
+        }
+      ],
+      "definition_citation_verified": true
+    }
+  ],
+  "facility_c_credit_agreement.txt": [
+    {
+      "covenant_name": "Consolidated Net Leverage Ratio",
+      "definition_citation": "\"Consolidated Net Leverage Ratio\" means, as of the last day of any Test Period, the ratio of (a) Consolidated Net Debt as of such date to (b) Consolidated EBITDA for the Test Period then ended.",
+      "definition_text": "Ratio of Consolidated Net Debt (aggregate outstanding principal amount of Indebtedness for borrowed money minus unrestricted cash and cash equivalents) to Consolidated EBITDA (Consolidated Net Income plus interest expense, taxes, depreciation and amortization, non-cash stock-based compensation, and certain non-recurring/extraordinary items) for the relevant Test Period.",
+      "document_effective_date": "June 3, 2023",
+      "extraction_notes": "Covenant is subject to a cure right under Section 6.02, allowing up to two equity cures during the term of the Agreement, whereby a cash contribution is added to Consolidated EBITDA for the relevant Test Period for purposes of calculating this ratio only.",
+      "supersedes": null,
+      "threshold_operator": "must not exceed",
+      "threshold_tiers": [
+        {
+          "threshold_value": "3.50:1.00",
+          "citation": "The Borrower shall not permit the Consolidated Net Leverage Ratio, as of the last day of any Test Period ending on or after September 30, 2023, to exceed 3.50:1.00.",
+          "applies_from": "Test Period ending on or after September 30, 2023",
+          "applies_to": null,
+          "citation_verified": true
+        }
+      ],
+      "definition_citation_verified": true
+    }
+  ],
+  "facility_c_amendment_1.txt": [
+    {
+      "covenant_name": "Consolidated Net Leverage Ratio",
+      "definition_citation": null,
+      "definition_text": "Ratio of consolidated net leverage (debt net of cash, presumably) to a financial metric (e.g., EBITDA), as defined in the Existing Credit Agreement; the specific numerator/denominator definition is not provided in this amendment document, which only amends the threshold table in Section 6.01.",
+      "document_effective_date": "April 11, 2025",
+      "extraction_notes": "The underlying definition of 'Consolidated Net Leverage Ratio' (numerator/denominator) is not set forth in this Amendment document; it presumably resides in the Existing Credit Agreement dated June 3, 2023, which was not provided. The Amendment also references a prior cure right exercised under Section 6.02 for the Test Period ended December 31, 2024, and waives a Specified Default (anticipated breach in excess of 3.50:1.00) for the Test Period ending March 31, 2025.",
+      "supersedes": "Section 6.01 (Consolidated Net Leverage Ratio) of the Existing Credit Agreement, dated as of June 3, 2023",
+      "threshold_operator": "must not exceed",
+      "threshold_tiers": [
+        {
+          "threshold_value": "3.50:1.00",
+          "citation": "Test Periods ending on or after September 30, 2023 and on or before December 31, 2024: 3.50:1.00",
+          "applies_from": "September 30, 2023",
+          "applies_to": "December 31, 2024",
+          "citation_verified": true
+        },
+        {
+          "threshold_value": "4.00:1.00",
+          "citation": "Test Periods ending on or after March 31, 2025: 4.00:1.00",
+          "applies_from": "March 31, 2025",
+          "applies_to": null,
+          "citation_verified": true
+        }
+      ],
+      "definition_citation_verified": null
+    }
+  ]
+}
