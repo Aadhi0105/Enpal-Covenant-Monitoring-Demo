@@ -52,6 +52,10 @@ Synthetic portfolio financials, spanning several consecutive reporting periods, 
 ---
 
 ## Repository Structure
+
+
+```
+
 enpal-covenant-monitoring-demo/
 ├── README.md
 ├── requirements.txt
@@ -74,6 +78,7 @@ enpal-covenant-monitoring-demo/
 └── records/
 └── (structured JSON output from notebooks 01–03, committed as evidence of a real run)
 
+```
 ---
 
 ## Intended Outputs
