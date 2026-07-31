@@ -55,7 +55,7 @@
         "confidence": "high"
       },
       {
-        "covenant_name": "Reserve Account Covenant / Reserve Account Deficiency",
+        "covenant_name": "Reserve Account Deficiency / Required Reserve Amount",
         "primary_citation": "\"Required Reserve Amount\" means an amount equal to 2.00% of the Original Pool Balance.",
         "seen_in_passes": [
           0,
@@ -64,12 +64,13 @@
         ],
         "agreement_rate": 1.0,
         "threshold_values_seen": [
-          "2.00%"
+          "2.00%",
+          "2.00% of the Original Pool Balance"
         ],
-        "threshold_consistent": true,
+        "threshold_consistent": false,
         "citation_verified": true,
         "schema_valid": true,
-        "confidence": "high"
+        "confidence": "low - needs review"
       }
     ],
     "facility_c_credit_agreement.txt": [
@@ -108,8 +109,45 @@
         "citation_verified": true,
         "schema_valid": true,
         "confidence": "high"
+      },
+      {
+        "covenant_name": "Consolidated Net Leverage Ratio",
+        "primary_citation": "Test Periods ending on or after March 31, 2025: 4.00:1.00",
+        "seen_in_passes": [
+          0,
+          1,
+          2
+        ],
+        "agreement_rate": 1.0,
+        "threshold_values_seen": [
+          "4.00:1.00"
+        ],
+        "threshold_consistent": true,
+        "citation_verified": true,
+        "schema_valid": true,
+        "confidence": "high"
       }
     ]
   },
-  "review_queue": []
+  "review_queue": [
+    {
+      "source_document": "facility_b_credit_agreement.txt",
+      "covenant_name": "Reserve Account Deficiency / Required Reserve Amount",
+      "primary_citation": "\"Required Reserve Amount\" means an amount equal to 2.00% of the Original Pool Balance.",
+      "seen_in_passes": [
+        0,
+        1,
+        2
+      ],
+      "agreement_rate": 1.0,
+      "threshold_values_seen": [
+        "2.00%",
+        "2.00% of the Original Pool Balance"
+      ],
+      "threshold_consistent": false,
+      "citation_verified": true,
+      "schema_valid": true,
+      "confidence": "low - needs review"
+    }
+  ]
 }

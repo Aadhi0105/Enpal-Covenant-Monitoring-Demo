@@ -3,3 +3,4 @@ python-dotenv      # Loads the API key from .env without hardcoding it anywhere 
 pandas             # Reads synthetic_financials/*.csv, structures multi-period comparison output
 pydantic           # Defines and validates the covenant extraction schema — the "schema validation" half of the confidence signal
 jupyter            # Runs the .ipynb notebooks
+python-dateutil     # Parses effective dates out of extracted text (e.g. "Test Period ending on or after September 30, 2023") for the record-store resolver
