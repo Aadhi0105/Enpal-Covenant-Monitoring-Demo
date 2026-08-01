@@ -2,10 +2,9 @@
 
 % ---------- Packages ----------
 \usepackage[margin=1in]{geometry}
-\usepackage{charter}
+\usepackage{mathptmx}          % Times New Roman equivalent (Times is proprietary; this is the standard LaTeX substitute)
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
-\usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{fancyhdr}
 \usepackage{booktabs}
@@ -13,25 +12,20 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{enumitem}
-\usepackage[colorlinks=true, linkcolor=slate, citecolor=slate, urlcolor=slate]{hyperref}
+\usepackage[hidelinks]{hyperref}  % clickable TOC/refs with no colour or visible border
 \usepackage{tcolorbox}
 \usepackage{parskip}
 \usepackage{caption}
 
-% ---------- Colors ----------
-\definecolor{slate}{RGB}{30,58,95}
-\definecolor{lightslate}{RGB}{230,236,244}
-\definecolor{softred}{RGB}{153,27,27}
-\definecolor{softgreen}{RGB}{22,101,52}
-\definecolor{bodytext}{RGB}{30,30,30}
-\color{bodytext}
+% ---------- Colour: none. Pure black text, white background, throughout. ----------
+\color{black}
 
-% ---------- Section styling ----------
+% ---------- Section styling (black only, weight/rule for hierarchy instead of colour) ----------
 \titleformat{\section}
-  {\normalfont\Large\bfseries\color{slate}}
+  {\normalfont\Large\bfseries}
   {\thesection}{0.6em}{}
 \titleformat{\subsection}
-  {\normalfont\large\bfseries\color{slate}}
+  {\normalfont\large\bfseries\itshape}
   {\thesubsection}{0.6em}{}
 \titlespacing{\section}{0pt}{1.6em}{0.8em}
 \titlespacing{\subsection}{0pt}{1.2em}{0.5em}
@@ -41,18 +35,18 @@
 \fancyhf{}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
-\fancyhead[L]{\small\color{slate} AI-Assisted Covenant Monitoring -- Project Documentation}
-\fancyhead[R]{\small\color{slate} \thepage}
+\fancyhead[L]{\small AI-Assisted Covenant Monitoring -- Project Documentation}
+\fancyhead[R]{\small\thepage}
 
-% ---------- Custom boxes ----------
+% ---------- Custom boxes: black border, white fill, no colour ----------
 \newtcolorbox{noticebox}{
-  colback=lightslate, colframe=slate, boxrule=0.8pt,
-  arc=2pt, left=10pt, right=10pt, top=8pt, bottom=8pt
+  colback=white, colframe=black, boxrule=0.8pt,
+  arc=1pt, left=10pt, right=10pt, top=8pt, bottom=8pt
 }
 
 \newcommand{\keyfinding}[1]{%
-  \begin{tcolorbox}[colback=lightslate, colframe=slate, boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt]
-  \textbf{Key finding:} #1
+  \begin{tcolorbox}[colback=white, colframe=black, boxrule=0.6pt, arc=1pt, left=8pt, right=8pt, top=6pt, bottom=6pt]
+  \textbf{\textit{Key finding:}} #1
   \end{tcolorbox}
 }
 
@@ -68,7 +62,7 @@
 \centering
 \vspace*{2.5cm}
 
-{\Huge\bfseries\color{slate} AI-Assisted Covenant Monitoring}
+{\Huge\bfseries AI-Assisted Covenant Monitoring}
 
 \vspace{0.6cm}
 {\Large A Working Prototype}
@@ -112,9 +106,9 @@ Built as an independent technical exploration ahead of an interview for the Juni
 
 This document describes a working prototype built to explore a specific idea: that artificial intelligence, applied carefully and with a human always in the loop, can meaningfully help a small portfolio team track the financial covenants attached to their lending facilities -- even when there are only a handful of such facilities, not hundreds.
 
-The idea did not start as a settled conclusion. It started as a premise that needed to survive scrutiny, and this document is, in large part, the record of that scrutiny. Early versions of the argument rested on the idea that manual covenant tracking becomes unmanageable as the number of loan agreements grows. On reflection, and after establishing that Enpal's own real financing structure involves only a handful of large facilities rather than a high volume of documents, that argument did not hold up. What replaced it is sharper and, I believe, more honest: the real risk is not in reading a document once, but in testing it correctly, period after period, for years; in making sure that two facilities using the same covenant name are not secretly using two different definitions; and in knowing which version of a covenant currently governs once an agreement has been amended.
+A natural objection follows immediately: if there are only a handful of facilities, why does any of this need a system at all? It is a fair question, and this document takes it seriously rather than assuming it away. The answer does not rest on document volume. It rests on three things that are real regardless of how many facilities exist: a covenant is tested every reporting period, for years, not read once; two lenders can use the identical covenant name while meaning different things by it; and an amended covenant requires knowing which version currently governs, as of a specific date -- not just what the original agreement once said.
 
-To test whether these three problems are real, and whether a carefully designed system can actually solve them, I built three entirely fictional loan agreements, wrote a small pipeline of five Jupyter notebooks around them, and ran the whole thing end to end. Every number in this document is a real, computed result from that pipeline -- not a projection of what it should do.
+To test whether these three problems are real, and whether a carefully designed system can actually address them, I built three entirely fictional loan agreements, wrote a small pipeline of five Jupyter notebooks around them, and ran the whole thing end to end. Every number in this document is a real, computed result from that pipeline -- not a projection of what it should do.
 
 The headline results: the system correctly told apart two facilities that used an identical covenant name but meant different things by it, with the difference actually changing the risk conclusion. It correctly resolved which threshold governed a covenant across time after that covenant was formally amended, including a case where a naive system -- one that only read the original agreement and never learned of the amendment -- would have wrongly concluded that two genuinely compliant periods were covenant breaches. And where the evidence was not clean enough to trust automatically, the system said so, and withheld a result rather than guess.
 
@@ -137,9 +131,9 @@ Over the past few years, this financing base has grown steadily. A first warehou
 
 \subsection{Why This Is Worth Solving, Even With Few Facilities}
 
-An early version of this project's argument was that manual covenant tracking becomes unmanageable purely because of the number of documents involved. That argument does not survive contact with the facts: Enpal has roughly half a dozen distinct facility agreements, not hundreds, and a handful of documents is not, by itself, a volume problem that a small team cannot handle by hand.
+A natural objection: Enpal has roughly half a dozen distinct facility agreements, not hundreds. A handful of documents is not, on its own, a volume problem a small team cannot handle by hand -- so why does this need a system at all?
 
-The more defensible case rests on three separate observations, each of which is real even with a small number of facilities:
+The case rests on three separate observations, each of which is real even with a small number of facilities:
 
 \begin{enumerate}[leftmargin=1.4em]
 \item \textbf{Recurrence.} A covenant is not read once and filed away. It is tested every single reporting period -- monthly or quarterly, depending on the facility -- for the entire multi-year life of the agreement. The risk is not in the first read; it is in staying accurate across dozens of repeated testing cycles, some of which may happen years apart.
@@ -177,26 +171,32 @@ Every document and every figure used anywhere in this project was written specif
 
 \subsection{The Three Synthetic Facilities}
 
-Three fictional financing facilities were written, each isolating exactly one of the three problems described above, so that each claim could be tested cleanly and without interference from the others.
+Three fictional financing facilities were written. Each isolates exactly one of the three problems described in Section 1.2, so that each claim could be tested cleanly, without one facility's complications interfering with another's. None of the three was drafted arbitrarily -- each design choice below, including the specific covenant register, the specific definitional variation, and the specific amendment structure, was made for a stated reason.
+
+\textbf{Facility A -- the control.} Structured as an asset-backed warehouse facility, matching Enpal's real, primary financing model. It carries two covenants -- a Delinquency Ratio and an Overcollateralization Test -- chosen because they represent the two fundamental covenant families present in almost any securitisation or warehouse facility: a pool-performance trigger, and a collateral-sufficiency test. Both were drafted with reference to real, publicly filed asset-backed servicing agreements and investor reports, so that the drafting conventions -- how a delinquency trigger is defined, how an overcollateralization target is calculated -- reflect genuine market practice rather than an invented approximation of it. Facility A is deliberately uneventful: every period stays comfortably within its limits. This matters for two reasons. First, if the extraction and testing pipeline cannot handle the easy, healthy case cleanly, nothing else in the project is worth trusting. Second, Facility A serves as the reference point against which Facility B's entire argument is measured -- Facility B reuses Facility A's exact covenant name, on purpose.
+
+\textbf{Facility B -- definitional inconsistency, isolated.} Also structured as an asset-backed warehouse facility, with a different lender, so that the only meaningful difference between it and Facility A is the covenant definition itself, not the surrounding facility type. Facility B's Delinquency Ratio carries the identical name as Facility A's -- ``Delinquency Ratio'' -- but a materially different governing definition: receivables 90 or more days delinquent, divided by the pool's \emph{fixed original} balance at closing, rather than Facility A's 60-or-more-days delinquent, divided by the pool's \emph{current}, amortising balance. This specific combination of differences -- both the delinquency threshold and the denominator -- was not invented arbitrarily; it mirrors a real, observed variation across actual filed asset-backed servicing agreements, where both conventions are genuinely in use. The point of Facility B is to test whether identical labels concealing different meanings is a real, detectable risk, and the definitional difference was chosen specifically because it is subtle enough that a person moving quickly between two facilities could plausibly miss it. Facility B also carries a Reserve Account covenant, unrelated to the delinquency story, included so that Facility B reads as a genuine, independent facility in its own right rather than merely ``Facility A with different numbers,'' and so that the confidence-review mechanism (Section 5) would have a second, unrelated covenant to test.
+
+\textbf{Facility C -- amendment and lifecycle drift, isolated.} Deliberately written in a different register entirely: a corporate term loan, in the leveraged-finance style, rather than an asset-backed structure. This switch serves two purposes. First, it mirrors Enpal's actual financing stack, which mixes asset-backed warehouse facilities with corporate-level borrowing, so the project demonstrates the approach generalising across registers rather than working only within one. Second, it keeps the amendment-resolution problem cleanly isolated: Facility C's single covenant, a Consolidated Net Leverage Ratio, is the most widely recognised covenant type in corporate lending, chosen specifically so that the complexity being demonstrated is the amendment mechanic itself, not an unfamiliar covenant type. The original agreement includes a limited equity cure right, a genuine and common market feature in leveraged facilities, included here so that the later amendment has a believable backstory: a cure was already used once, making a formal amendment the natural next step rather than the first resort. The amendment itself follows the real structural pattern observed in actual filed credit agreement amendments: a recital acknowledging an anticipated covenant breach, a waiver of that specific default, and a restated covenant carrying a new, tiered threshold with its own effective date. The tiering was deliberately set so that the amendment's effective date falls on a fiscal quarter boundary, and so that the change is tested against a period the resolver must key off the correct \emph{test date}, not the amendment document's own signing date -- the single hardest and most realistic version of this problem.
+
+Facility C additionally carries a second document: the formal amendment described above, executed after the original agreement. This is the document that makes the amendment-resolution claim testable at all.
 
 \begin{center}
 \renewcommand{\arraystretch}{1.35}
 \begin{tabular}{@{}p{2.1cm}p{2.6cm}p{4.3cm}p{5.4cm}@{}}
 \toprule
-\textbf{Facility} & \textbf{Register} & \textbf{Purpose} & \textbf{Key covenants} \\
+\textbf{Facility} & \textbf{Register} & \textbf{Isolates} & \textbf{Key covenants} \\
 \midrule
-A & Asset-backed warehouse & Control case -- clean, healthy, no complications & Delinquency Ratio (60+ days / current pool balance), Overcollateralization Test \\
-B & Asset-backed warehouse & Isolates definitional inconsistency & Delinquency Ratio (90+ days / fixed original pool balance) -- same name as Facility A, different meaning; Reserve Account covenant \\
-C & Corporate term loan & Isolates amendment and lifecycle drift & Consolidated Net Leverage Ratio, later formally amended \\
+A & Asset-backed warehouse & Control case -- no complications & Delinquency Ratio (60+ days / current pool balance), Overcollateralization Test \\
+B & Asset-backed warehouse & Definitional inconsistency & Delinquency Ratio (90+ days / fixed original pool balance) -- same name as Facility A, different meaning; Reserve Account covenant \\
+C & Corporate term loan & Amendment and lifecycle drift & Consolidated Net Leverage Ratio, later formally amended \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-Facility C additionally carries a second document: a formal amendment, executed after the original agreement, that changes its leverage ratio threshold partway through the facility's life. This is the document that makes the amendment-resolution claim testable at all.
-
 \subsection{Real-World Grounding}
 
-To make the synthetic documents read like genuine legal drafting rather than an invented approximation of it, several real, publicly filed documents were consulted purely as structural and stylistic references -- never copied, and never fed into the system itself. These included real asset-backed servicing agreements and investor reports filed with the U.S. Securities and Exchange Commission, which supplied realistic conventions for how delinquency triggers and overcollateralization tests are typically drafted and reported, and several real credit agreement amendments, which supplied the realistic structure of a waiver-and-amendment document: a recital acknowledging an anticipated covenant breach, a restated covenant with a new threshold, and a clause confirming everything else in the original agreement remains unchanged.
+To make the synthetic documents read like genuine legal drafting rather than an invented approximation of it, several real, publicly filed documents were consulted purely as structural and stylistic references -- never copied, and never fed into the system itself. These included real asset-backed servicing agreements and investor reports filed with the U.S. Securities and Exchange Commission, and several real credit agreement amendments. Where a specific facility's design drew directly on one of these references, that is noted in Section 2.2 above rather than repeated here.
 
 \newpage
 % ============================================================
@@ -323,9 +323,34 @@ Facility B's Reserve Account covenant, still pending human review from Notebook 
 
 This is the notebook where everything comes together: real (synthetic) portfolio and financial data, spanning several consecutive reporting periods per facility, is compared against the correctly resolved governing threshold for each period, producing an actual, period-by-period compliance result.
 
-\subsection{Facility A Results -- The Control Case}
+Each facility's raw underlying data is shown immediately before its computed results below, limited in each case to only the figures that actually feed into that facility's reported covenant math -- so the arithmetic behind every ratio in this section can be checked directly, rather than taken on faith.
 
-Facility A's Delinquency Ratio and Overcollateralization Test were computed across eight monthly reporting periods. Both stayed comfortably within their respective limits throughout, exactly as intended for a clean control case.
+\subsection{Facility A -- The Control Case}
+
+\textbf{Raw portfolio data.} All monetary figures in EUR millions.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Period} & \textbf{Pool Balance} & \textbf{Advance Balance} & \textbf{61--90 Days} & \textbf{91--120 Days} & \textbf{120+ Days} \\
+\midrule
+2024-03 & 150.00 & 132.00 & 0.54 & 0.42 & 0.24 \\
+2024-04 & 156.00 & 137.28 & 0.65 & 0.50 & 0.30 \\
+2024-05 & 161.00 & 141.68 & 0.76 & 0.59 & 0.35 \\
+2024-06 & 164.00 & 144.32 & 0.85 & 0.66 & 0.39 \\
+2024-07 & 167.00 & 146.96 & 0.94 & 0.73 & 0.43 \\
+2024-08 & 169.00 & 148.72 & 1.03 & 0.80 & 0.47 \\
+2024-09 & 171.00 & 150.48 & 1.12 & 0.87 & 0.51 \\
+2024-10 & 172.50 & 151.80 & 1.19 & 0.92 & 0.54 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The Delinquency Ratio each period is the sum of the 61--90, 91--120, and 120+ day balances, divided by the Pool Balance. The Overcollateralization Amount is the Pool Balance minus the Advance Balance, compared against a target of 8.00\% of the Pool Balance.
+
+\textbf{Computed results.} Delinquency Ratio and Overcollateralization Test were computed across eight monthly reporting periods. Both stayed comfortably within their respective limits throughout, exactly as intended for a clean control case.
 
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
@@ -346,9 +371,30 @@ Facility A's Delinquency Ratio and Overcollateralization Test were computed acro
 \end{tabular}
 \end{center}
 
-\subsection{Facility B Results -- Definitional Inconsistency}
+\subsection{Facility B -- Definitional Inconsistency}
 
-The same underlying raw delinquency data was computed two different ways: correctly, using Facility B's own contractual definition (receivables 90 or more days delinquent, divided by the pool's fixed original balance), and incorrectly, using Facility A's definition instead (receivables 60 or more days delinquent, divided by the pool's current, shrinking balance) -- the exact mistake someone would make reusing a familiar definition without checking the governing terms of the specific facility in front of them.
+\textbf{Raw portfolio data.} All monetary figures in EUR millions. The Original Pool Balance is fixed at closing and does not change period to period; the current Pool Balance amortises downward as the underlying receivables are repaid.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Period} & \textbf{Original Pool Bal.} & \textbf{Current Pool Bal.} & \textbf{61--90 Days} & \textbf{91--120 Days} & \textbf{120+ Days} \\
+\midrule
+2024-11 & 220.00 & 218.00 & 0.90 & 0.40 & 0.20 \\
+2024-12 & 220.00 & 211.00 & 1.40 & 0.65 & 0.32 \\
+2025-01 & 220.00 & 204.00 & 2.20 & 1.05 & 0.52 \\
+2025-02 & 220.00 & 197.00 & 3.40 & 1.70 & 0.85 \\
+2025-03 & 220.00 & 190.00 & 5.20 & 2.70 & 1.35 \\
+2025-04 & 220.00 & 183.00 & 7.80 & 4.10 & 2.05 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Facility B's own, correct Delinquency Ratio is the sum of the 91--120 and 120+ day balances (its 90-or-more-days definition), divided by the fixed Original Pool Balance. The ``if Facility A's definition were misapplied'' column below instead sums the 61--90, 91--120, and 120+ day balances (Facility A's 60-or-more-days definition) and divides by the current, amortising Pool Balance -- using the identical raw data, computed the wrong way.
+
+\textbf{Computed results.} The same underlying raw delinquency data was computed two different ways: correctly, using Facility B's own contractual definition, and incorrectly, using Facility A's definition instead -- the exact mistake someone would make reusing a familiar definition without checking the governing terms of the specific facility in front of them.
 
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
@@ -369,9 +415,32 @@ The same underlying raw delinquency data was computed two different ways: correc
 
 \keyfinding{Under its correct, contractual definition, Facility B never comes close to breaching its 4.00\% trigger. Under Facility A's definition, applied to the exact same underlying data, the ratio would have crossed 5\% by the final period -- a false alarm produced entirely by using the wrong definition, not by any real deterioration in the portfolio.}
 
-\subsection{Facility C Results -- Amendment Resolution}
+\subsection{Facility C -- Amendment Resolution}
 
-The Consolidated Net Leverage Ratio was computed across eight quarterly test periods, each compared against whichever threshold was actually governing on that date.
+\textbf{Raw financial data.} All monetary figures in EUR millions.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Test Period End} & \textbf{Net Debt} & \textbf{EBITDA (LTM)} & \textbf{Cure Contribution} \\
+\midrule
+2023-09-30 & 178.00 & 64.50 & -- \\
+2023-12-31 & 184.00 & 63.50 & -- \\
+2024-03-31 & 190.00 & 62.00 & -- \\
+2024-06-30 & 196.00 & 60.50 & -- \\
+2024-09-30 & 202.00 & 59.00 & -- \\
+2024-12-31 & 209.00 & 57.00 & 3.00 \\
+2025-03-31 & 215.00 & 57.80 & -- \\
+2025-06-30 & 213.00 & 59.00 & -- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The Consolidated Net Leverage Ratio each period is Net Debt divided by EBITDA; where a Cure Contribution was applied, it is added to EBITDA for that period's calculation only, per the original agreement's cure mechanic.
+
+\textbf{Computed results.} The Consolidated Net Leverage Ratio was computed across eight quarterly test periods, each compared against whichever threshold was actually governing on that date.
 
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
@@ -391,7 +460,7 @@ The Consolidated Net Leverage Ratio was computed across eight quarterly test per
 \bottomrule
 \end{tabular}
 \end{center}
-{\small $^{*}$Adjusted for a permitted equity cure of EUR 3,000,000; the unadjusted ratio this period was 3.667x, which would have breached the 3.50x limit absent the cure.}
+{\small $^{*}$Adjusted for the permitted equity cure of EUR 3.00 million shown above; the unadjusted ratio this period was 3.667x, which would have breached the 3.50x limit absent the cure.}
 
 \keyfinding{Every period is genuinely compliant. But a naive system -- one that never learned of the amendment and kept testing every period against the original 3.50x limit -- would have wrongly concluded that both the March 2025 and June 2025 periods were covenant breaches (3.720x and 3.610x both exceed 3.50x). Both are, in fact, comfortably compliant under the correctly resolved 4.00x threshold that actually governs those dates. This is the single sharpest, most concrete result in the entire project.}
 
@@ -465,7 +534,7 @@ Amendments can be correctly resolved by date & A naive system would have wrongly
 \begin{itemize}[leftmargin=1.4em]
 \item \textbf{Synthetic data only.} Every agreement and every financial figure used in this project was written specifically for it. Real-world drafting conventions were used only as structural and stylistic reference, never copied.
 \item \textbf{Starts after document scanning.} Agreements are provided as plain text throughout this project. A production system would need a preceding step to convert scanned or image-based documents into text; that step is out of scope here.
-\item \textbf{A deliberately small number of facilities.} Three facilities is a design choice made to isolate three specific problems cleanly, not a limitation to be apologized for -- see Section 1.2.
+\item \textbf{A deliberately small number of facilities.} Three facilities is a design choice made to isolate three specific problems cleanly, not a limitation to be apologized for -- see Section 1.2 and Section 2.2.
 \item \textbf{A rough, evolving prototype.} This is not a finished product, and was never intended to be one at this stage. It is a genuine, working first attempt at a real problem.
 \end{itemize}
 
