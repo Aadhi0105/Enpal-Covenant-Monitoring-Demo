@@ -37,19 +37,22 @@ To show, on a small and fully inspectable set of synthetic documents, that it is
 
 ## Methodology
 
-The pipeline runs in four stages, one notebook per stage:
+The pipeline runs in five stages, one notebook per stage:
 
 **1. Extraction** (`01_extraction.ipynb`)
 Each synthetic agreement is passed to the extraction model with a schema-constrained prompt: every covenant field returned must carry a citation to its exact source span in the document. Fields with no grounded citation are returned as "not found" rather than inferred.
 
 **2. Confidence & Review** (`02_confidence_and_review.ipynb`)
-Extraction is run multiple times per document. Agreement across passes, combined with schema validation, produces a confidence score. Low-confidence or missing fields are flagged for human review rather than accepted automatically. Nothing covenant-critical proceeds without sign-off.
+Extraction is run three times per document. A covenant is marked high confidence only if every pass agrees on the same value, the citation independently verifies against the source text, and the record passes schema validation — all three, or none; there is no numeric score and no partial credit. Anything short of that is flagged for human review rather than accepted automatically. Nothing covenant-critical proceeds without sign-off.
 
 **3. Record Store** (`03_record_store.ipynb`)
 Approved extractions are written as versioned records, each carrying an effective date and, where relevant, a pointer to the record it supersedes. A resolver function answers: *what is the governing version of this covenant, as of period N?*
 
 **4. Comparison & Alerting** (`04_comparison_and_alerting.ipynb`)
 Synthetic portfolio financials, spanning several consecutive reporting periods, are compared against the correctly governing threshold for each period. Output is a period-by-period result showing headroom and trend — drift toward breach, not just a binary flag. This notebook is the full end-to-end demonstration; running it top to bottom reproduces the entire pipeline's output.
+
+**5. Visualizations** (`05_visualizations.ipynb`)
+Builds two charts directly from Notebook 4's saved output — no new computation, no API calls. Only two, deliberately: they're the only results in this project that are genuinely trends over time with a built-in comparison.
 
 ---
 
@@ -60,38 +63,45 @@ enpal-covenant-monitoring-demo/
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
-├── .env                                     # Anthropic API key — not committed
+├── .env # Anthropic API key — not committed
+├── docs/
+│ ├── Enpal_Covenant_Monitoring_Project_Documentation.pdf
+│ └── Enpal_Covenant_Monitoring_Project_Documentation.tex
 ├── synthetic_agreements/
-│   ├── facility_a_credit_agreement.txt      # Control case — ABS-style, no complications
-│   ├── facility_b_credit_agreement.txt      # Definitional inconsistency, isolated
-│   ├── facility_c_credit_agreement.txt      # Amendment/lifecycle, isolated — original
-│   └── facility_c_amendment_1.txt           # Facility C — amendment, own effective date
+│ ├── facility_a_credit_agreement.txt # Control case — ABS-style, no complications
+│ ├── facility_b_credit_agreement.txt # Definitional inconsistency, isolated
+│ ├── facility_c_credit_agreement.txt # Amendment/lifecycle, isolated — original
+│ └── facility_c_amendment_1.txt # Facility C — amendment, own effective date
 ├── synthetic_financials/
-│   ├── facility_a_periods.csv               # Multi-period synthetic portfolio data
-│   ├── facility_b_periods.csv
-│   └── facility_c_periods.csv
+│ ├── facility_a_periods.csv # Multi-period synthetic portfolio data
+│ ├── facility_b_periods.csv
+│ └── facility_c_periods.csv
 ├── notebooks/
-│   ├── 01_extraction.ipynb
-│   ├── 02_confidence_and_review.ipynb
-│   ├── 03_record_store.ipynb
-│   └── 04_comparison_and_alerting.ipynb
+│ ├── 01_extraction.ipynb
+│ ├── 02_confidence_and_review.ipynb
+│ ├── 03_record_store.ipynb
+│ ├── 04_comparison_and_alerting.ipynb
+│ └── 05_visualizations.ipynb
+├── charts/
+│ ├── facility_b_divergence.png
+│ └── facility_c_amendment_timeline.png
 └── records/
-    └── (structured JSON output from every notebook, committed as evidence of a real run)
-```
+└── (structured JSON output from every notebook, committed as evidence of a real run)
 
+```
 ---
 
 ## Results
 
-All four notebooks have been run end to end against the synthetic agreements and financial data. What follows are the actual, independently verified results — not a description of what the pipeline is intended to do.
+All five notebooks have been run end to end against the synthetic agreements and financial data. What follows are the actual, independently verified results — not a description of what the pipeline is intended to do.
 
 **Extraction and confidence.** All three facilities' covenants were extracted with citation-grounded values, each independently checked against the source text. Across three independent extraction passes per document, six of seven distinct covenant terms reached full agreement and were approved. One — Facility B's Reserve Account covenant — was correctly withheld from monitoring and flagged for human review: the three passes agreed on the underlying citation, but expressed the threshold value in two different, equally valid phrasings ("2.00%" vs. "2.00% of the Original Pool Balance"). It remains excluded pending review, exactly as intended — nothing covenant-critical proceeds without sign-off.
 
 **Facility A (control).** Delinquency Ratio rose gently from 0.80% to 1.54% over eight periods, well under the 5.00% trigger. Overcollateralization held steady at 12.0%, comfortably above the 8.00% target, throughout. No drama — the clean case, as designed.
 
-**Facility B (definitional inconsistency).** Using its own contractual definition (90+ days delinquent ÷ fixed original pool balance), Facility B's Delinquency Ratio rose from 0.273% to 2.795% across six periods — never approaching its 4.00% trigger. Applying Facility A's definition (60+ days ÷ current, shrinking balance) to the *identical* underlying data instead produces 0.688% rising to 7.623%, crossing 5% by the final period. Same facts, two definitions, two entirely different risk conclusions — the core claim this facility exists to prove, demonstrated on real computed output.
+**Facility B (definitional inconsistency).** Using its own contractual definition (90+ days delinquent ÷ fixed original pool balance), Facility B's Delinquency Ratio rose from 0.273% to 2.795% across six periods — never approaching its 4.00% trigger. Running the identical underlying data through the wrong calculation convention instead (60+ days ÷ current, shrinking balance — the formula Facility A happens to use) produces 0.688% rising to 7.623%, and genuinely breaches Facility B's own real 4.00% trigger a full period earlier, from March 2025 onward. Same facts, same threshold, one wrong formula, two entirely different risk conclusions — the core claim this facility exists to prove, demonstrated on real computed output and visualized in `charts/facility_b_divergence.png`.
 
-**Facility C (amendment resolution).** The Consolidated Net Leverage Ratio was correctly tested against 3.50:1.00 through the Test Period ended December 31, 2024 — headroom narrowing steadily to a thin +0.017x that period, cured via a permitted equity contribution — and against the amended 4.00:1.00 threshold from March 31, 2025 onward, with headroom recovering to +0.280x and +0.390x. A resolver using only the original agreement, never learning of the amendment, would have wrongly flagged **both** post-amendment periods as covenant breaches. The correct resolver, built in this repository, did not.
+**Facility C (amendment resolution).** The Consolidated Net Leverage Ratio was correctly tested against 3.50:1.00 through the Test Period ended December 31, 2024 — headroom narrowing steadily to a thin +0.017x that period, cured via a permitted equity contribution — and against the amended 4.00:1.00 threshold from March 31, 2025 onward, with headroom recovering to +0.280x and +0.390x. A resolver using only the original agreement, never learning of the amendment, would have wrongly flagged **both** post-amendment periods as covenant breaches. The correct resolver, built in this repository, did not. See `charts/facility_c_amendment_timeline.png` for the full trajectory.
 
 ---
 
