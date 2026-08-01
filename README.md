@@ -2,6 +2,8 @@
 
 **Status:** Work in progress. Built as a personal technical exploration ahead of an interview — not an Enpal-commissioned project.
 
+For a detailed, plain-language walkthrough of this project's design, methodology, and results, see [`docs/Enpal_Covenant_Monitoring_Project_Documentation.pdf`](docs/Enpal_Covenant_Monitoring_Project_Documentation.pdf).
+
 ---
 
 ## Confidentiality Notice
