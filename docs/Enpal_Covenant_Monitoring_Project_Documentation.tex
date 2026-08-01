@@ -392,28 +392,28 @@ The Delinquency Ratio each period is the sum of the 61--90, 91--120, and 120+ da
 \end{tabular}
 \end{center}
 
-Facility B's own, correct Delinquency Ratio is the sum of the 91--120 and 120+ day balances (its 90-or-more-days definition), divided by the fixed Original Pool Balance. The ``if Facility A's definition were misapplied'' column below instead sums the 61--90, 91--120, and 120+ day balances (Facility A's 60-or-more-days definition) and divides by the current, amortising Pool Balance -- using the identical raw data, computed the wrong way.
+Facility B's own, correct Delinquency Ratio is the sum of the 91--120 and 120+ day balances (its 90-or-more-days definition), divided by the fixed Original Pool Balance. The ``if the wrong formula were used'' column below instead sums the 61--90, 91--120, and 120+ day balances (a 60-or-more-days definition), divided by the current, amortising Pool Balance -- using the identical raw data, computed with the wrong calculation convention.
 
-\textbf{Computed results.} The same underlying raw delinquency data was computed two different ways: correctly, using Facility B's own contractual definition, and incorrectly, using Facility A's definition instead -- the exact mistake someone would make reusing a familiar definition without checking the governing terms of the specific facility in front of them.
+\textbf{Computed results.} The same underlying raw delinquency data was computed two different ways: correctly, using Facility B's own contractual definition, and incorrectly, using a different calculation convention instead -- the realistic failure of reusing a familiar calculation template across facilities without checking the governing terms of the specific facility in front of them. Both results are tested throughout against Facility B's own real, contractual trigger.
 
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
 \small
-\begin{tabular}{@{}lccc@{}}
+\begin{tabular}{@{}lcccc@{}}
 \toprule
-\textbf{Period} & \textbf{B's own definition} & \textbf{vs.\ 4.00\% trigger} & \textbf{If A's definition misapplied} \\
+\textbf{Period} & \textbf{B's own definition} & \textbf{vs.\ 4.00\% trigger} & \textbf{If wrong formula used} & \textbf{vs.\ B's own 4.00\% trigger} \\
 \midrule
-2024-11 & 0.273\% & OK & 0.688\% \\
-2024-12 & 0.441\% & OK & 1.123\% \\
-2025-01 & 0.714\% & OK & 1.848\% \\
-2025-02 & 1.159\% & OK & 3.020\% \\
-2025-03 & 1.841\% & OK & 4.868\% \\
-2025-04 & 2.795\% & OK & \textbf{7.623\% -- crosses 5\%} \\
+2024-11 & 0.273\% & OK & 0.688\% & OK \\
+2024-12 & 0.441\% & OK & 1.123\% & OK \\
+2025-01 & 0.714\% & OK & 1.848\% & OK \\
+2025-02 & 1.159\% & OK & 3.020\% & OK \\
+2025-03 & 1.841\% & OK & 4.868\% & \textbf{FALSE BREACH} \\
+2025-04 & 2.795\% & OK & 7.623\% & \textbf{FALSE BREACH} \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\keyfinding{Under its correct, contractual definition, Facility B never comes close to breaching its 4.00\% trigger. Under Facility A's definition, applied to the exact same underlying data, the ratio would have crossed 5\% by the final period -- a false alarm produced entirely by using the wrong definition, not by any real deterioration in the portfolio.}
+\keyfinding{Under its correct, contractual definition, Facility B never comes close to breaching its 4.00\% trigger. Using the wrong calculation formula instead, on the identical underlying data, produces a genuine false breach against Facility B's own real threshold, one period earlier than the correct calculation ever comes close. No threshold number was mixed up here -- the wrong calculation convention was simply applied to this facility's data instead of its own.}
 
 \subsection{Facility C -- Amendment Resolution}
 
@@ -470,13 +470,13 @@ The Consolidated Net Leverage Ratio each period is Net Debt divided by EBITDA; w
 % ============================================================
 \section{Visualizations}
 
-\subsection{Chart 1: Facility B -- Same Data, Two Definitions}
+\subsection{Chart 1: Facility B -- Same Data, Same Threshold, Wrong Formula}
 
 \begin{center}
 \includegraphics[width=0.95\textwidth]{images/facility_b_divergence.png}
 \end{center}
 
-This chart makes the definitional-inconsistency finding visible at a glance. The blue line -- Facility B's correct, contractual definition -- stays low and never threatens its own 4.00\% trigger. The red line -- the same underlying data, run through Facility A's definition instead -- climbs steeply and crosses Facility A's 5.00\% trigger by the final period. Same facts, two definitions, two entirely different conclusions about portfolio risk.
+This chart makes the definitional-inconsistency finding visible at a glance. The blue line -- Facility B's correct, contractual definition -- stays low and never threatens its own 4.00\% trigger. The red line -- the same underlying data, run through the wrong calculation formula instead -- climbs steeply and crosses Facility B's own real trigger by March 2025, shaded here as the false-breach zone. Same facts, same threshold, one wrong formula, two entirely different conclusions about portfolio risk.
 
 \subsection{Chart 2: Facility C -- Amendment Resolution Over Time}
 
