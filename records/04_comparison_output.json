@@ -73,39 +73,46 @@
         "period": "2024-11",
         "correct_ratio_pct": 0.273,
         "correct_triggered": false,
-        "if_wrongly_using_facility_a_definition_pct": 0.688
+        "wrong_formula_ratio_pct": 0.688,
+        "wrong_formula_triggered": false
       },
       {
         "period": "2024-12",
         "correct_ratio_pct": 0.441,
         "correct_triggered": false,
-        "if_wrongly_using_facility_a_definition_pct": 1.123
+        "wrong_formula_ratio_pct": 1.123,
+        "wrong_formula_triggered": false
       },
       {
         "period": "2025-01",
         "correct_ratio_pct": 0.714,
         "correct_triggered": false,
-        "if_wrongly_using_facility_a_definition_pct": 1.848
+        "wrong_formula_ratio_pct": 1.848,
+        "wrong_formula_triggered": false
       },
       {
         "period": "2025-02",
         "correct_ratio_pct": 1.159,
         "correct_triggered": false,
-        "if_wrongly_using_facility_a_definition_pct": 3.02
+        "wrong_formula_ratio_pct": 3.02,
+        "wrong_formula_triggered": false
       },
       {
         "period": "2025-03",
         "correct_ratio_pct": 1.841,
         "correct_triggered": false,
-        "if_wrongly_using_facility_a_definition_pct": 4.868
+        "wrong_formula_ratio_pct": 4.868,
+        "wrong_formula_triggered": true
       },
       {
         "period": "2025-04",
         "correct_ratio_pct": 2.795,
         "correct_triggered": false,
-        "if_wrongly_using_facility_a_definition_pct": 7.623
+        "wrong_formula_ratio_pct": 7.623,
+        "wrong_formula_triggered": true
       }
     ],
+    "delinquency_trigger_threshold_pct": 4.0,
     "reserve_account_covenant": {
       "status": "untestable - pending human review",
       "governing_threshold": null
