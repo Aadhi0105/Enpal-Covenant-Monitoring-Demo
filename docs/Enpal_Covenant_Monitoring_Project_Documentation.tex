@@ -1,0 +1,483 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{charter}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=slate, citecolor=slate, urlcolor=slate]{hyperref}
+\usepackage{tcolorbox}
+\usepackage{parskip}
+\usepackage{caption}
+
+% ---------- Colors ----------
+\definecolor{slate}{RGB}{30,58,95}
+\definecolor{lightslate}{RGB}{230,236,244}
+\definecolor{softred}{RGB}{153,27,27}
+\definecolor{softgreen}{RGB}{22,101,52}
+\definecolor{bodytext}{RGB}{30,30,30}
+\color{bodytext}
+
+% ---------- Section styling ----------
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{slate}}
+  {\thesection}{0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{slate}}
+  {\thesubsection}{0.6em}{}
+\titlespacing{\section}{0pt}{1.6em}{0.8em}
+\titlespacing{\subsection}{0pt}{1.2em}{0.5em}
+
+% ---------- Headers/Footers ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\small\color{slate} AI-Assisted Covenant Monitoring -- Project Documentation}
+\fancyhead[R]{\small\color{slate} \thepage}
+
+% ---------- Custom boxes ----------
+\newtcolorbox{noticebox}{
+  colback=lightslate, colframe=slate, boxrule=0.8pt,
+  arc=2pt, left=10pt, right=10pt, top=8pt, bottom=8pt
+}
+
+\newcommand{\keyfinding}[1]{%
+  \begin{tcolorbox}[colback=lightslate, colframe=slate, boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt]
+  \textbf{Key finding:} #1
+  \end{tcolorbox}
+}
+
+\setlength{\parskip}{0.7em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{2.5cm}
+
+{\Huge\bfseries\color{slate} AI-Assisted Covenant Monitoring}
+
+\vspace{0.6cm}
+{\Large A Working Prototype}
+
+\vspace{0.4cm}
+{\large\itshape Project Documentation and Technical Reference}
+
+\vspace{2.5cm}
+
+{\large Prepared by Aadhitya}
+
+\vspace{0.3cm}
+{\large August 2026}
+
+\vspace{2.5cm}
+
+\begin{minipage}{0.8\textwidth}
+\centering
+\small\itshape
+Built as an independent technical exploration ahead of an interview for the Junior Portfolio Manager role at Enpal. Not an Enpal-commissioned project.
+\end{minipage}
+
+\vfill
+
+\end{titlepage}
+
+% ============================================================
+% CONFIDENTIALITY NOTICE
+% ============================================================
+\begin{noticebox}
+\textbf{Confidentiality Notice.} This project, and this document, are demonstrated entirely on synthetic, self-authored loan agreements and synthetic portfolio data. No real Enpal transaction documents, and no real document belonging to any other institution, are used anywhere in this project. In a production setting, agreement text and portfolio data would be processed entirely within a private environment. Nothing described here reflects, or is derived from, any real deal document.
+\end{noticebox}
+
+\vspace{1cm}
+
+% ============================================================
+% EXECUTIVE SUMMARY
+% ============================================================
+\section*{Executive Summary}
+\addcontentsline{toc}{section}{Executive Summary}
+
+This document describes a working prototype built to explore a specific idea: that artificial intelligence, applied carefully and with a human always in the loop, can meaningfully help a small portfolio team track the financial covenants attached to their lending facilities -- even when there are only a handful of such facilities, not hundreds.
+
+The idea did not start as a settled conclusion. It started as a premise that needed to survive scrutiny, and this document is, in large part, the record of that scrutiny. Early versions of the argument rested on the idea that manual covenant tracking becomes unmanageable as the number of loan agreements grows. On reflection, and after establishing that Enpal's own real financing structure involves only a handful of large facilities rather than a high volume of documents, that argument did not hold up. What replaced it is sharper and, I believe, more honest: the real risk is not in reading a document once, but in testing it correctly, period after period, for years; in making sure that two facilities using the same covenant name are not secretly using two different definitions; and in knowing which version of a covenant currently governs once an agreement has been amended.
+
+To test whether these three problems are real, and whether a carefully designed system can actually solve them, I built three entirely fictional loan agreements, wrote a small pipeline of five Jupyter notebooks around them, and ran the whole thing end to end. Every number in this document is a real, computed result from that pipeline -- not a projection of what it should do.
+
+The headline results: the system correctly told apart two facilities that used an identical covenant name but meant different things by it, with the difference actually changing the risk conclusion. It correctly resolved which threshold governed a covenant across time after that covenant was formally amended, including a case where a naive system -- one that only read the original agreement and never learned of the amendment -- would have wrongly concluded that two genuinely compliant periods were covenant breaches. And where the evidence was not clean enough to trust automatically, the system said so, and withheld a result rather than guess.
+
+This remains a rough, evolving prototype, built in my own time on a small and deliberately limited set of synthetic documents. It is not a finished product, and it is not what Enpal would need in production. But it is real, it runs, and every claim in it can be checked against the code and the data behind it.
+
+\newpage
+\tableofcontents
+\newpage
+
+% ============================================================
+% SECTION 1: INTRODUCTION AND PREMISE
+% ============================================================
+\section{Introduction and Premise}
+
+\subsection{The Context: Enpal's Financing Model}
+
+Enpal finances the sale of residential solar systems, battery storage, and related equipment to households, and then refinances that growing pool of customer contracts through structured financing arrangements with institutional lenders. This is a capital-efficient model: rather than holding all of that lending on its own balance sheet indefinitely, Enpal sells or pledges pools of customer receivables into special-purpose financing vehicles funded by banks and asset managers.
+
+Over the past few years, this financing base has grown steadily. A first warehouse facility was established in 2023 with Citi and M\&G. Within a year, two further asset-backed warehousing facilities followed, backed by Barclays Europe, Bank of America, and Cr\'edit Agricole CIB, alongside mezzanine financing from CPP Investments. In 2024, the European Investment Bank Group backed what has been described as Europe's first public solar securitisation. By 2025, a further warehouse facility of several hundred million euros had been arranged with M\&G. Each of these facilities is a real, separately negotiated legal agreement, typically containing financial covenants -- contractual promises about the health of the underlying loan pool or the company's own balance sheet -- that must be tested and reported on every period, for as long as the facility remains outstanding.
+
+\subsection{Why This Is Worth Solving, Even With Few Facilities}
+
+An early version of this project's argument was that manual covenant tracking becomes unmanageable purely because of the number of documents involved. That argument does not survive contact with the facts: Enpal has roughly half a dozen distinct facility agreements, not hundreds, and a handful of documents is not, by itself, a volume problem that a small team cannot handle by hand.
+
+The more defensible case rests on three separate observations, each of which is real even with a small number of facilities:
+
+\begin{enumerate}[leftmargin=1.4em]
+\item \textbf{Recurrence.} A covenant is not read once and filed away. It is tested every single reporting period -- monthly or quarterly, depending on the facility -- for the entire multi-year life of the agreement. The risk is not in the first read; it is in staying accurate across dozens of repeated testing cycles, some of which may happen years apart.
+\item \textbf{Definitional inconsistency.} Two different lenders can use the exact same covenant name -- a delinquency ratio, a leverage ratio -- while defining it in materially different ways: a different threshold, a different denominator, a different aging bucket. This risk exists whether there are three facilities or three hundred; a person can misapply one lender's convention to another's data just as easily either way.
+\item \textbf{Amendment and lifecycle drift.} Loan agreements are not static. They get amended, waived, and renegotiated over their life. Knowing which version of a covenant is \emph{currently} governing, as of a specific date, is a genuine and recurring problem -- not something solved by reading the original document once.
+\end{enumerate}
+
+\subsection{What This Project Sets Out to Prove}
+
+Rather than argue these points in the abstract, this project builds a small, self-contained system and tests whether it actually handles all three problems correctly, on real (if synthetic) documents and real (if synthetic) financial data. Concretely, the goal was to demonstrate:
+
+\begin{itemize}[leftmargin=1.4em]
+\item Extraction of covenant terms from unstructured legal text, with every extracted value grounded in an exact quotation from the source document -- never a guess, and never invented.
+\item A genuine measure of confidence in that extraction, based on whether independent, repeated attempts agree with each other -- not on the model's own self-reported certainty.
+\item Correct identification of definitional inconsistency between two facilities that happen to use the same covenant name.
+\item Correct resolution of which version of an amended covenant governs, as of any given date.
+\item A working comparison layer that takes real portfolio data and produces an actual period-by-period compliance and early-warning result.
+\end{itemize}
+
+\newpage
+% ============================================================
+% SECTION 2: DESIGN CHOICES AND SCOPE
+% ============================================================
+\section{Design Choices and Scope}
+
+\subsection{Why Synthetic Data}
+
+Every document and every figure used anywhere in this project was written specifically for this project. No real Enpal transaction document was used, and no real document belonging to any other institution was used either, even though such documents are often legally public. Several reasons drove this choice, and they reinforced each other:
+
+\textbf{Consistency of principle.} The entire premise of this project is that sensitive financing documents should never leave a private environment. Publishing even someone else's real, legally public credit agreement in a demonstration repository would contradict that principle in spirit, even if not in law. Better to hold the standard consistently than to make an exception for convenience.
+
+\textbf{Precision of design.} Self-authored documents can be built to demonstrate exactly the right thing. A real filed agreement was not written with this project's three specific claims in mind, and finding one that cleanly isolates definitional inconsistency, or a clean amendment cutover, would be more luck than engineering.
+
+\textbf{Accountability.} If asked about any specific clause, the honest answer is always available, because every clause exists because it was written to demonstrate something specific.
+
+\subsection{The Three Synthetic Facilities}
+
+Three fictional financing facilities were written, each isolating exactly one of the three problems described above, so that each claim could be tested cleanly and without interference from the others.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}p{2.1cm}p{2.6cm}p{4.3cm}p{5.4cm}@{}}
+\toprule
+\textbf{Facility} & \textbf{Register} & \textbf{Purpose} & \textbf{Key covenants} \\
+\midrule
+A & Asset-backed warehouse & Control case -- clean, healthy, no complications & Delinquency Ratio (60+ days / current pool balance), Overcollateralization Test \\
+B & Asset-backed warehouse & Isolates definitional inconsistency & Delinquency Ratio (90+ days / fixed original pool balance) -- same name as Facility A, different meaning; Reserve Account covenant \\
+C & Corporate term loan & Isolates amendment and lifecycle drift & Consolidated Net Leverage Ratio, later formally amended \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Facility C additionally carries a second document: a formal amendment, executed after the original agreement, that changes its leverage ratio threshold partway through the facility's life. This is the document that makes the amendment-resolution claim testable at all.
+
+\subsection{Real-World Grounding}
+
+To make the synthetic documents read like genuine legal drafting rather than an invented approximation of it, several real, publicly filed documents were consulted purely as structural and stylistic references -- never copied, and never fed into the system itself. These included real asset-backed servicing agreements and investor reports filed with the U.S. Securities and Exchange Commission, which supplied realistic conventions for how delinquency triggers and overcollateralization tests are typically drafted and reported, and several real credit agreement amendments, which supplied the realistic structure of a waiver-and-amendment document: a recital acknowledging an anticipated covenant breach, a restated covenant with a new threshold, and a clause confirming everything else in the original agreement remains unchanged.
+
+\newpage
+% ============================================================
+% SECTION 3: SYSTEM ARCHITECTURE
+% ============================================================
+\section{System Architecture}
+
+\subsection{Pipeline Overview}
+
+The system is built as five sequential Jupyter notebooks, each producing a saved output that the next notebook reads and builds on. Each notebook is deliberately self-contained -- able to be read, run, and understood on its own -- rather than relying on shared code imported from elsewhere.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.6cm}p{3.6cm}p{9.2cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Notebook} & \textbf{What it does} \\
+\midrule
+1 & Extraction & Reads each synthetic agreement and extracts covenant terms, with every value grounded in an exact quotation from the source text. \\
+2 & Confidence \& Review & Repeats extraction three times per document and checks whether the results agree, combined with a structural validation check. Disagreement is flagged for human review rather than silently accepted. \\
+3 & Record Store & Builds a versioned record of every approved covenant, and resolves which version -- original or amended -- governs as of any given date. \\
+4 & Comparison \& Alerting & Compares real portfolio and financial data against the resolved governing threshold, period by period, producing an actual compliance and early-warning result. \\
+5 & Visualizations & Builds the two charts included in this document, directly from the saved results of Notebook 4. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Technology Stack}
+
+The extraction step (Notebook 1) makes real calls to Anthropic's Claude API (model: Claude Sonnet 5), using a schema-constrained tool call so that the model's response is forced into a fixed structure rather than free-form text. Notebooks 2 through 5 involve no external API calls at all -- they are ordinary, deterministic Python, using \texttt{pandas} for data handling, \texttt{pydantic} for structural validation, \texttt{python-dateutil} for date parsing, and \texttt{matplotlib} for the charts.
+
+\newpage
+% ============================================================
+% SECTION 4: NOTEBOOK 1 -- EXTRACTION
+% ============================================================
+\section{Notebook 1: Extraction}
+
+\subsection{What It Does}
+
+This notebook takes each of the four synthetic documents -- Facility A's agreement, Facility B's agreement, Facility C's original agreement, and Facility C's amendment -- and asks the model to identify every financial covenant it contains, returning a structured record for each one.
+
+\subsection{How It Works}
+
+The request to the model is built so that it can only respond in one specific structured shape: a list of covenants, each with a name, a governing definition, a threshold value, and -- critically -- an exact quotation from the source document supporting each of those fields. If a value cannot be supported by an exact quotation, the model is instructed to say so explicitly rather than infer or guess.
+
+This matters because it is the mechanism behind the central anti-hallucination claim of the whole project: the model is not being asked to summarize or interpret the document in its own words. It is being asked to locate and cite specific spans of real text. After the model responds, a separate, independent check -- ordinary Python code, not another model call -- verifies that every quotation the model returned is genuinely, character-for-character, present in the source document. This is a real, mechanical check, not something the model reports about itself.
+
+\subsection{Results}
+
+Across the four documents, six distinct covenants were correctly identified, each with a verified citation:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{2.6cm}p{5.4cm}p{2.4cm}p{2.4cm}@{}}
+\toprule
+\textbf{Document} & \textbf{Covenant} & \textbf{Threshold} & \textbf{Citation} \\
+\midrule
+Facility A & Delinquency Ratio / Trigger & 5.00\% & Verified \\
+Facility A & Overcollateralization Test & 8.00\% & Verified \\
+Facility B & Delinquency Ratio / Trigger & 4.00\% & Verified \\
+Facility B & Reserve Account Covenant & 2.00\% & Verified \\
+Facility C (original) & Consolidated Net Leverage Ratio & 3.50:1.00 & Verified \\
+Facility C (amendment) & Consolidated Net Leverage Ratio & 3.50:1.00 then 4.00:1.00 & Verified (both tiers) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Worth noting explicitly: the amendment's extraction correctly returned a \emph{null} value for the covenant's underlying numerator-and-denominator definition, because the amendment document genuinely does not restate that definition -- it only changes the threshold table. Rather than inventing a plausible-sounding definition to fill the gap, the system reported, accurately, that it could not be found in this particular document. This is exactly the behavior the anti-hallucination design is meant to produce.
+
+\newpage
+% ============================================================
+% SECTION 5: NOTEBOOK 2 -- CONFIDENCE AND REVIEW
+% ============================================================
+\section{Notebook 2: Confidence and Review}
+
+\subsection{What It Does}
+
+Rather than trust a single extraction pass, this notebook runs the extraction process three independent times per document, and checks whether the three attempts agree with each other. This is combined with a separate structural check confirming that every extracted record has all the fields it is supposed to have.
+
+\subsection{The Method}
+
+Agreement is measured, not assumed. For each covenant, the notebook checks three things across the three independent passes: did every pass find the same underlying evidence (matched by the citation each pass quoted, since a citation is a verbatim quotation and should be stable if extraction is genuinely grounded); did every pass agree on the actual threshold value; and did every extracted record pass structural validation. A covenant is marked high confidence only if all three checks pass. Anything less is explicitly flagged for a human reviewer, rather than silently accepted.
+
+\subsection{A Real Finding: The Tier-Scoring Gap}
+
+While building this notebook, an early version of the scoring logic only checked the \emph{first} threshold value belonging to each covenant. This went unnoticed at first because every covenant except one has only a single threshold. Facility C's amended covenant, however, has two -- the pre-amendment threshold and the post-amendment threshold -- and the early version was silently never checking the second one's agreement across passes at all. This was caught while building the next notebook, which needed to consume both thresholds independently, and was fixed by rewriting the scoring logic to check every threshold a covenant carries, not just the first. This is described in more detail in Section 9, but is worth flagging here as a genuine gap that was found and corrected, not a design that worked perfectly on the first attempt.
+
+\subsection{Results}
+
+Once the scoring logic was corrected to check every tier independently, seven distinct covenant-and-threshold combinations were scored across the four documents. Six reached full agreement across all three passes and were approved. One -- Facility B's Reserve Account covenant -- was correctly withheld.
+
+\keyfinding{The one item flagged for review was not a real disagreement about the underlying fact. All three passes quoted the identical source sentence. What differed was purely how the threshold value was phrased: one pass wrote ``2.00\% of the Original Pool Balance,'' the other two wrote the shorter ``2.00\%.'' Same fact, two valid phrasings, correctly caught as an inconsistency worth a person's attention -- and resolvable by a person in a few seconds. This is precisely what a review queue is for.}
+
+\newpage
+% ============================================================
+% SECTION 6: NOTEBOOK 3 -- RECORD STORE
+% ============================================================
+\section{Notebook 3: Record Store}
+
+\subsection{What It Does}
+
+This notebook takes every covenant that passed Notebook 2's confidence check, and builds a single, queryable record answering one question: as of any given date, what is the currently governing version of this covenant?
+
+\subsection{The Amendment Problem, Explained Simply}
+
+Facility C's original agreement, read on its own, states a single leverage ratio limit of 3.50:1.00, with no end date -- as far as that document alone is concerned, that limit applies forever. Later, a formal amendment changes the limit to 4.00:1.00, but only from a certain date onward, and only after confirming the original 3.50:1.00 limit applied up to that point. A system that only reads the original document would never learn about this change. A system that reads both documents, but does not know which one to trust for which dates, risks getting the answer wrong in either direction.
+
+\subsection{How Resolution Works}
+
+Each covenant record carries the date range it governs. Where an amendment exists, its date ranges take priority over the original document's, for any date the amendment actually covers; the original document's terms only matter for dates the amendment does not address. In practice, for Facility C, this means: for any test date up to the end of 2024, the governing threshold is 3.50:1.00; for any test date from March 2025 onward, it is 4.00:1.00 -- correctly picked up from the amendment, not the original document.
+
+\subsection{Results}
+
+\keyfinding{Resolving a June 2025 test date correctly returns the amended 4.00:1.00 threshold. A deliberately naive version of the same resolver -- one built to only ever consult the original agreement -- returns 3.50:1.00 for the same date instead. This is not a hypothetical concern: it is the exact, demonstrated difference between a system that correctly tracks amendments and one that does not.}
+
+Facility B's Reserve Account covenant, still pending human review from Notebook 2, is deliberately and correctly absent from this record store. An unresolved covenant is unavailable to the resolver, not silently included as though it had been approved.
+
+\newpage
+% ============================================================
+% SECTION 7: NOTEBOOK 4 -- COMPARISON AND ALERTING
+% ============================================================
+\section{Notebook 4: Comparison and Alerting}
+
+\subsection{What It Does}
+
+This is the notebook where everything comes together: real (synthetic) portfolio and financial data, spanning several consecutive reporting periods per facility, is compared against the correctly resolved governing threshold for each period, producing an actual, period-by-period compliance result.
+
+\subsection{Facility A Results -- The Control Case}
+
+Facility A's Delinquency Ratio and Overcollateralization Test were computed across eight monthly reporting periods. Both stayed comfortably within their respective limits throughout, exactly as intended for a clean control case.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Period} & \textbf{Delinquency Ratio} & \textbf{vs.\ 5.00\% Trigger} & \textbf{Overcollateralization} \\
+\midrule
+2024-03 & 0.800\% & OK & Satisfied (12.0\% vs.\ 8.0\% target) \\
+2024-04 & 0.929\% & OK & Satisfied \\
+2024-05 & 1.056\% & OK & Satisfied \\
+2024-06 & 1.159\% & OK & Satisfied \\
+2024-07 & 1.257\% & OK & Satisfied \\
+2024-08 & 1.361\% & OK & Satisfied \\
+2024-09 & 1.462\% & OK & Satisfied \\
+2024-10 & 1.536\% & OK & Satisfied \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Facility B Results -- Definitional Inconsistency}
+
+The same underlying raw delinquency data was computed two different ways: correctly, using Facility B's own contractual definition (receivables 90 or more days delinquent, divided by the pool's fixed original balance), and incorrectly, using Facility A's definition instead (receivables 60 or more days delinquent, divided by the pool's current, shrinking balance) -- the exact mistake someone would make reusing a familiar definition without checking the governing terms of the specific facility in front of them.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Period} & \textbf{B's own definition} & \textbf{vs.\ 4.00\% trigger} & \textbf{If A's definition misapplied} \\
+\midrule
+2024-11 & 0.273\% & OK & 0.688\% \\
+2024-12 & 0.441\% & OK & 1.123\% \\
+2025-01 & 0.714\% & OK & 1.848\% \\
+2025-02 & 1.159\% & OK & 3.020\% \\
+2025-03 & 1.841\% & OK & 4.868\% \\
+2025-04 & 2.795\% & OK & \textbf{7.623\% -- crosses 5\%} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\keyfinding{Under its correct, contractual definition, Facility B never comes close to breaching its 4.00\% trigger. Under Facility A's definition, applied to the exact same underlying data, the ratio would have crossed 5\% by the final period -- a false alarm produced entirely by using the wrong definition, not by any real deterioration in the portfolio.}
+
+\subsection{Facility C Results -- Amendment Resolution}
+
+The Consolidated Net Leverage Ratio was computed across eight quarterly test periods, each compared against whichever threshold was actually governing on that date.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Test Period} & \textbf{Ratio} & \textbf{Governing Threshold} & \textbf{Result} & \textbf{Headroom} \\
+\midrule
+2023-09-30 & 2.760x & 3.50x & Compliant & +0.740x \\
+2023-12-31 & 2.898x & 3.50x & Compliant & +0.602x \\
+2024-03-31 & 3.065x & 3.50x & Compliant & +0.435x \\
+2024-06-30 & 3.240x & 3.50x & Compliant & +0.260x \\
+2024-09-30 & 3.424x & 3.50x & Compliant & +0.076x \\
+2024-12-31 & 3.483x$^{*}$ & 3.50x & Compliant & +0.017x \\
+2025-03-31 & 3.720x & \textbf{4.00x} & Compliant & +0.280x \\
+2025-06-30 & 3.610x & \textbf{4.00x} & Compliant & +0.390x \\
+\bottomrule
+\end{tabular}
+\end{center}
+{\small $^{*}$Adjusted for a permitted equity cure of EUR 3,000,000; the unadjusted ratio this period was 3.667x, which would have breached the 3.50x limit absent the cure.}
+
+\keyfinding{Every period is genuinely compliant. But a naive system -- one that never learned of the amendment and kept testing every period against the original 3.50x limit -- would have wrongly concluded that both the March 2025 and June 2025 periods were covenant breaches (3.720x and 3.610x both exceed 3.50x). Both are, in fact, comfortably compliant under the correctly resolved 4.00x threshold that actually governs those dates. This is the single sharpest, most concrete result in the entire project.}
+
+\newpage
+% ============================================================
+% SECTION 8: VISUALIZATIONS
+% ============================================================
+\section{Visualizations}
+
+\subsection{Chart 1: Facility B -- Same Data, Two Definitions}
+
+\begin{center}
+\includegraphics[width=0.95\textwidth]{images/facility_b_divergence.png}
+\end{center}
+
+This chart makes the definitional-inconsistency finding visible at a glance. The blue line -- Facility B's correct, contractual definition -- stays low and never threatens its own 4.00\% trigger. The red line -- the same underlying data, run through Facility A's definition instead -- climbs steeply and crosses Facility A's 5.00\% trigger by the final period. Same facts, two definitions, two entirely different conclusions about portfolio risk.
+
+\subsection{Chart 2: Facility C -- Amendment Resolution Over Time}
+
+\begin{center}
+\includegraphics[width=0.95\textwidth]{images/facility_c_amendment_timeline.png}
+\end{center}
+
+This chart shows the leverage ratio's real trajectory (dark blue) against the correctly resolved governing threshold (green), which visibly steps up from 3.50x to 4.00x at the amendment's effective date. The narrow point in late 2024, where the line nearly touches the threshold, is the period the equity cure was needed. The shaded region marks where a naive, amendment-unaware system (grey dashed line) would have wrongly concluded a breach, even though both of those periods are genuinely compliant under the correct, amended threshold.
+
+\newpage
+% ============================================================
+% SECTION 9: ENGINEERING DISCIPLINE
+% ============================================================
+\section{Engineering Discipline: What Went Wrong, and How It Was Fixed}
+
+This project's central argument is that a system like this must verify rather than blindly trust -- both the covenant data it extracts, and its own internal reasoning. In the spirit of that same discipline, this section documents the real problems encountered while building it, rather than presenting a version of events where everything worked correctly the first time. None of these were catastrophic, and all were caught through deliberate testing before they could produce a wrong result -- which is, itself, the point.
+
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{Inconsistent API response shapes.} On different calls, the extraction model occasionally returned its structured list of covenants wrapped differently -- sometimes as a plain list as expected, sometimes as that same list encoded as a text string, and once as a further nested object containing the list. Each of these was caught through direct inspection of the raw response before being allowed to propagate further, and the parsing logic was made robust to all of them at once, rather than patched separately each time.
+\item \textbf{Overly strict citation matching.} An early version of the multi-pass agreement check in Notebook 2 required two citations to match exactly, character for character, to be considered the same underlying evidence. In practice, the model occasionally quoted slightly different boundaries of the same real sentence across different passes -- for instance, including or omitting a leading phrase. This produced false disagreement flags on genuinely consistent extractions. The fix was to treat two citations as the same evidence if one is fully contained within the other, which was verified against the real failing case before being adopted.
+\item \textbf{A silent date-parsing error.} A general-purpose date parser, used to interpret extracted phrases like ``Closing Date (March 14, 2024),'' was found to silently misread the year in some cases -- returning 2026 instead of 2024 -- because a closing parenthesis immediately following the year confused the parser's handling of that token, causing it to quietly substitute the current year instead of raising an error. This was caught only because every date string was deliberately tested against its expected value before being trusted; the fix was to extract and parse any parenthetical date content in isolation first.
+\item \textbf{The tier-scoring gap} described in Section 5.3, where only the first of two threshold values on an amended covenant was being independently checked for cross-pass agreement.
+\item \textbf{A data-type serialization issue.} Values computed using the \texttt{pandas} data library are not, by default, compatible with the standard method used to save results as a text file, and would have caused the final save step to fail. This was caught by testing the save step in isolation before relying on it, and fixed with a small conversion step.
+\end{itemize}
+
+\newpage
+% ============================================================
+% SECTION 10: KEY FINDINGS SUMMARY
+% ============================================================
+\section{Key Findings Summary}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}p{4.3cm}p{9.7cm}@{}}
+\toprule
+\textbf{Claim} & \textbf{Evidence} \\
+\midrule
+Extraction can be grounded, not generative & Every extracted value carries an independently verified, exact quotation from source text; where no definition existed in a document, the system correctly reported that, rather than inventing one. \\
+\addlinespace
+Confidence can be genuinely measured & Across three independent extraction passes and seven covenant-threshold combinations, six reached full agreement and were approved; one was correctly withheld, with a specific, human-understandable reason. \\
+\addlinespace
+Definitional inconsistency is real and detectable & The identical covenant name, across two facilities, produces materially different -- and differently conclusive -- results when tested against the same underlying data. \\
+\addlinespace
+Amendments can be correctly resolved by date & A naive system would have wrongly flagged two genuinely compliant periods as covenant breaches after Facility C's amendment took effect. The system built here did not. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\newpage
+% ============================================================
+% SECTION 11: LIMITATIONS
+% ============================================================
+\section{Limitations}
+
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{Synthetic data only.} Every agreement and every financial figure used in this project was written specifically for it. Real-world drafting conventions were used only as structural and stylistic reference, never copied.
+\item \textbf{Starts after document scanning.} Agreements are provided as plain text throughout this project. A production system would need a preceding step to convert scanned or image-based documents into text; that step is out of scope here.
+\item \textbf{A deliberately small number of facilities.} Three facilities is a design choice made to isolate three specific problems cleanly, not a limitation to be apologized for -- see Section 1.2.
+\item \textbf{A rough, evolving prototype.} This is not a finished product, and was never intended to be one at this stage. It is a genuine, working first attempt at a real problem.
+\end{itemize}
+
+% ============================================================
+% SECTION 12: CONCLUSION
+% ============================================================
+\section{Conclusion and Way Forward}
+
+This project set out to test whether a carefully designed system -- one that extracts covenant terms with real citation grounding, measures its own confidence honestly rather than asserting it, and correctly resolves which version of a covenant governs over time -- could meaningfully help with a real, if currently small-scale, operational problem. On the evidence produced here, it can.
+
+Just as importantly, building it surfaced genuine engineering problems along the way -- in the extraction mechanism, in the confidence-scoring logic, and in ordinary date-handling code -- each of which was caught through deliberate testing rather than assumed away. That discipline, applied to the system itself and not only to the covenants it reads, is, I think, the more durable lesson of this project: augmenting judgment means nothing if the tool doing the augmenting has not itself been checked.
+
+The natural next steps, were this to continue: independently confidence-scoring every threshold tier from the start rather than discovering the gap partway through; extending the synthetic document set to cover a wider range of covenant types; and eventually testing the same approach against a genuinely messy, scanned real-world document, once the underlying extraction logic has proven itself on clean text.
+
+\end{document}
