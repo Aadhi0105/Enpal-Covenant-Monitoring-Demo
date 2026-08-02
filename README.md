@@ -14,13 +14,23 @@ This repository is demonstrated entirely on **synthetic, self-authored loan agre
 
 ## Premise
 
-Enpal's asset-financing model depends on a small but steadily growing set of institutional financing facilities — senior and mezzanine commitments from banks and asset managers across several ABS warehouse and public securitisation structures established since 2023. The number of facilities is deliberately small; that is not a limitation of this project, it is the point. The case for structured, AI-assisted covenant monitoring does not rest on document volume. It rests on three things that are real even at a handful of facilities:
+Enpal's asset-financing model depends on a small but steadily growing set of institutional financing facilities — senior and mezzanine commitments from banks and asset managers across several ABS warehouse and public securitisation structures established since 2022. The number of facilities is deliberately small; that is not a limitation of this project, it is the point. The case for structured, AI-assisted covenant monitoring does not rest on document volume. It rests on three things that are real even at a handful of facilities:
 
 1. **Recurrence.** A covenant is not read once — it is tested every reporting period, for the multi-year life of a facility. Manual tracking has to stay accurate across every cycle, not just on first read.
 2. **Definitional inconsistency.** Two facilities can use the same covenant name — a delinquency ratio, a leverage ratio — with materially different governing definitions. This risk exists at three facilities as much as at three hundred.
 3. **Amendment and lifecycle drift.** Facilities get amended and waived over their life. Knowing which version of a covenant is *currently governing*, as of a given date, is a real and recurring problem, not a one-time reading task.
 
 This prototype is scoped to demonstrate exactly these three claims, using three synthetic facilities, each isolating one problem.
+
+---
+
+## Why the Cadence Matters
+
+The facility count behind a real financing structure like this is not static — it grows roughly one relationship at a time as a company scales, and it keeps growing as new lenders and new facility types are added. This project's premise holds regardless of the exact count on any given day: the risk here was never about volume. It's about what happens every time a covenant is tested.
+
+Reporting cadence is the reason "recurrence" (see Premise, above) is a real risk rather than a theoretical one. Asset-backed warehouse facilities, of the kind Facilities A and B mirror, are typically tested monthly, against pool performance data that changes every period. Corporate-style facilities, like the leveraged one Facility C mirrors, are typically tested quarterly, against financial statements. Every one of those dates is a fresh chance for a manual process to drift — not from carelessness, but because a definition applied correctly in January has to be applied correctly again in February, and again in March, for the entire multi-year life of the facility.
+
+The consequence of getting one of those calculations wrong even once is not abstract — this project's own Facility C result shows it directly. A resolver that failed to correctly track a single amendment wrongly concluded that two genuinely compliant quarters were covenant breaches. In a real facility, a wrongly-flagged breach is the trigger for a formal Event of Default notice, which can permit acceleration of the debt — and where cross-default provisions exist, can place *other*, unrelated facilities into technical default as well. Where the facility sits inside a public securitisation, a wrongly-flagged breach also draws direct attention from the rating agencies covering the notes. A single miscalculation, caught late, is not a documentation problem. It's a covenant-compliance event with real, cascading consequences.
 
 ---
 
