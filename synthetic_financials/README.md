@@ -2,7 +2,7 @@
 
 Three CSVs, one per facility, each structured deliberately differently — the schema itself is part of the design, not an afterthought. This file explains every column, the actual numbers, and why each file is shaped the way it is.
 
-All figures are self-authored for this project. None are derived from, or represent, any real Enpal or third-party financial data.
+All figures are self-authored for this project. None are derived from, or represent, any real company's financial data.
 
 ---
 

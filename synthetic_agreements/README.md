@@ -2,7 +2,7 @@
 
 Four documents, three facilities. Each facility is a deliberate, self-authored design choice — none of the covenant registers, definitions, or amendment structure were picked at random. This file explains what each document is, what it's built to prove, and why it was drafted the way it was.
 
-None of these are real agreements. No real Enpal document, and no real document belonging to any other institution, was used or copied anywhere in this folder. Several real, publicly filed agreements — asset-backed servicing agreements and credit agreement amendments filed with the U.S. Securities and Exchange Commission — were read purely as structural and stylistic reference, to make the drafting conventions here realistic. Nothing from those real filings was copied into these documents.
+None of these are real agreements. No real company's document, and no real document belonging to any institution, was used or copied anywhere in this folder. Several real, publicly filed agreements — asset-backed servicing agreements and credit agreement amendments filed with the U.S. Securities and Exchange Commission — were read purely as structural and stylistic reference, to make the drafting conventions here realistic. Nothing from those real filings was copied into these documents.
 
 ---
 
@@ -16,7 +16,7 @@ None of these are real agreements. No real Enpal document, and no real document 
 - **Delinquency Ratio / Delinquency Trigger** — the ratio of Delinquent Receivables (60 or more days past due, measured against the current Outstanding Pool Balance) to the total Outstanding Pool Balance. A Delinquency Trigger occurs if this ratio exceeds **5.00%**.
 - **Overcollateralization Test** — satisfied if the Overcollateralization Amount (Outstanding Pool Balance of Eligible Receivables minus the Advance Balance) is at least **8.00%** of that same pool balance.
 
-**Why this register:** an asset-backed warehouse facility, because that mirrors Enpal's actual, primary financing model — pools of customer receivables refinanced through a special-purpose vehicle.
+**Why this register:** an asset-backed warehouse facility, because that's a common, real financing model for consumer asset-finance companies — pools of customer receivables refinanced through a special-purpose vehicle.
 
 **Why these two covenants specifically:** between them, they cover the two fundamental covenant families present in almost any securitization — a pool-performance trigger (delinquency) and a collateral-sufficiency test (overcollateralization). Both were drafted with real, publicly filed asset-backed servicing agreements and investor reports as structural reference, so the drafting conventions — how a delinquency trigger is defined, how an overcollateralization target is calculated — reflect genuine market practice.
 
@@ -54,7 +54,7 @@ None of these are real agreements. No real Enpal document, and no real document 
 
 **Cure right:** Section 6.02 permits the borrower to cure a breach, up to twice during the facility's term, by having the guarantor or its equityholders make a cash contribution, added to Consolidated EBITDA solely for the purpose of calculating the ratio.
 
-**Why the register changes here:** a straightforward corporate term loan, leveraged-finance style, deliberately different from Facilities A and B. Two reasons: it more closely mirrors how Enpal's own real financing stack actually mixes asset-backed warehouse facilities with corporate-level borrowing; and it keeps the covenant itself instantly recognizable — a leverage ratio — so that any complexity in what follows comes from the amendment mechanic, not from an unfamiliar covenant type.
+**Why the register changes here:** a straightforward corporate term loan, leveraged-finance style, deliberately different from Facilities A and B. Two reasons: it more closely mirrors how a real, growing asset-finance company's financing stack often mixes asset-backed warehouse facilities with corporate-level borrowing; and it keeps the covenant itself instantly recognizable — a leverage ratio — so that any complexity in what follows comes from the amendment mechanic, not from an unfamiliar covenant type.
 
 **Why the cure right is there:** genuinely common market practice in leveraged facilities, and it gives the amendment (below) a believable backstory — a cure already used once, making a formal amendment the natural next step rather than the first resort.
 
